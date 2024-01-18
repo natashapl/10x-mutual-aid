@@ -52,22 +52,48 @@ ga:
 
 # Site Navigation
 primary_navigation:
-  - name: Home
-    url: /
-  - name: Blog
-    url: /blog/
-  - name: Document
-    url: /document/
-  - name: Document with sidenav
-    url: /document-with-sidenav/
-  - name: Document submenu
+  - name: Find assistance
     children:
-      - name: Navigation link
-        url: "#main-content"
-      - name: Navigation link
-        url: "#main-content"
-      - name: Navigation link
-        url: "#main-content"
+      - name: Credentialed experts
+        url: /experts/
+      - name: Inspections & permits
+        url: /inspections/
+      - name: Building code knowledge
+        url: /codes/
+      - name: Navigating disaster recovery
+        url: /recovery/
+  - name: Training & resources
+    children:
+      - name: Credentialed experts
+        url: /experts/
+      - name: Inspections & permits
+        url: /inspections/
+      - name: Building code knowledge
+        url: /codes/
+      - name: Navigating disaster recovery
+        url: /recovery/
+  - name: FAQs
+    children:
+      - name: Credentialed experts
+        url: /experts/
+      - name: Inspections & permits
+        url: /inspections/
+      - name: Building code knowledge
+        url: /codes/
+      - name: Navigating disaster recovery
+        url: /recovery/
+  - name: Contacts
+    children:
+      - name: Credentialed experts
+        url: /experts/
+      - name: Inspections & permits
+        url: /inspections/
+      - name: Building code knowledge
+        url: /codes/
+      - name: Navigating disaster recovery
+        url: /recovery/
+
+  
 
 secondary_navigation:
   - name: Secondary link
