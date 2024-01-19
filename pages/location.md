@@ -9,8 +9,8 @@ sidenav: true
 
 <form action="{{ '/disaster-info/' | url }}">
 
-<label for="location">What is the primary location of the disaster event?</label>
-<select name="location">
+<label for="state">What is the primary location of the disaster event?</label>
+<select name="state">
   <option value="AK">Alaska</option>
   <optoin value="AL">Alabama</option>
   <option value="AR">Arkansas</option>

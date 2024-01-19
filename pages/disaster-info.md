@@ -17,6 +17,6 @@ Disaster info
 <script>
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const disasterState = urlParams.get('location')
+  const disasterState = urlParams.get('state')
   document.getElementById("results").action = {{ '/posts/' | url }}+disasterState;
 </script>
