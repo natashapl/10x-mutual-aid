@@ -7,7 +7,7 @@ manage your navigation system {% endcomment %}
     <div class="usa-nav__inner">
       <ul class="usa-nav__primary usa-accordion">
         <li style="margin-right: 120px; font-family: sans-serif; Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;">
-          <a href="/">{% image_with_class "./_img/logo-img.png" "width-15 height-auto" "Agency logo" %}</a>
+          <a href="{{ '/' | url }}">{% image_with_class "./_img/logo-img.png" "width-15 height-auto" "Agency logo" %}</a>
         </li>
         {% for nav_item in primary_navigation %}
           {% unless nav_item.children %}

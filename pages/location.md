@@ -5,9 +5,9 @@ layout: layouts/page
 sidenav: true
 ---
 
-# Assistance Questionnaire
+<h1 style="font-family: Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif; font-weight: normal; color: #005288;">Assistance Questionnaire</h1>
 
-<form action="/disaster-info/">
+<form action="{{ '/disaster-info/' | url }}">
 
 <label for="location">What is the primary location of the disaster event?</label>
 <select name="location">
