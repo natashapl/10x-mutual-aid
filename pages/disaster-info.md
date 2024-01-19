@@ -5,9 +5,34 @@ layout: layouts/page
 sidenav: true
 ---
 
-# Assistance Questionnaire
+<h1 style="font-family: Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif; font-weight: normal; color: #005288; width: 400px;">{% image "./_img/disaster-info.png" "illustration" %} <span style="position: relative; bottom: 40px;">Questionnaire</h1>
 
-Disaster info
+<h3>Disaster damage</h3>
+
+<label>Primary disaster type</label>
+<select>
+  <option>Flood</option>
+  <option>Fire</option>
+  <option>Storm</option>
+</select>
+
+<label>Please describe the damage</label>
+<textarea></textarea>
+
+<h3>Point of contact</h3>
+
+<label>First name</label>
+<input></input>
+<label>Last name</label>
+<input></input>
+
+<label>Communication method</label>
+<select>
+  <option>Phone call</option>
+  <option>Text message</option>
+  <option>E-mail</option>
+<select><br>
+<input></input>
 
 <form id="results">
 
