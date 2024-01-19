@@ -9,4 +9,14 @@ sidenav: true
 
 Disaster info
 
-<a class="usa-button" href="/blog/" style="margin: 50px 0 50px 0;">Continue</a>
+<form id="results">
+
+<button class="usa-button" action="blog" style="margin: 50px 0 50px 0;">Continue</button>
+</form>
+
+<script>
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const disasterState = urlParams.get('location')
+  document.getElementById("results").action = "/posts/"+disasterState;
+</script>

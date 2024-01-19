@@ -18,8 +18,8 @@ sidenav: true
   <option value="CA">California</option>
 </select>
 
-Describe the extent and location of the disaster
+<label>Describe the extent and location of the disaster</label>
 <textarea></textarea>
 
-<button class="usa-button" href="/disaster-info/" style="margin: 50px 0 50px 0;">Continue</button>
+<button class="usa-button" style="margin: 50px 0 50px 0;">Continue</button>
 </form>
