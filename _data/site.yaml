@@ -1,11 +1,9 @@
-title: Agency Name
-email: contact@example.gov
-description: >- # this means to ignore newlines
-  Agency Name (EAC) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Aenean et sapien a leo auctor scelerisque quis nec magna. Sed dictum ante a risus vehicula facilisis.
+title: Bringing Mutual Aid
+description:  Bringing Mutual Aid ia a portal could increase the use of mutual aid for building depts., support congressional legislation on disaster resilience, and help communities build back better.
+url: "https://bma.gsa.gov"
 
 # Twitter handle. Only the handle, not the URL.
-twitter: 18F
+# twitter: 18F
 
 #################################################################
 #
@@ -53,45 +51,24 @@ ga:
 # Site Navigation
 primary_navigation:
   - name: Find assistance
-    children:
-      - name: Credentialed experts
-        url: /posts/experts/
-      - name: Inspections & permits
-        url: /posts/inspections/
-      - name: Building code knowledge
-        url: /posts/codes/
-      - name: Navigating disaster recovery
-        url: /posts/recovery/
+    url: /posts/find-assistance/
   - name: Training & resources
-    children:
-      - name: Credentialed experts
-        url: /posts/experts/
-      - name: Inspections & permits
-        url: /posts/inspections/
-      - name: Building code knowledge
-        url: /posts/codes/
-      - name: Navigating disaster recovery
-        url: /posts/recovery/
+    url: /posts/training/
   - name: FAQs
-    children:
-      - name: Credentialed experts
-        url: /posts/experts/
-      - name: Inspections & permits
-        url: /posts/inspections/
-      - name: Building code knowledge
-        url: /posts/codes/
-      - name: Navigating disaster recovery
-        url: /posts/recovery/
+    url: /posts/faq/
   - name: Contacts
-    children:
-      - name: Credentialed experts
-        url: /posts/experts/
-      - name: Inspections & permits
-        url: /posts/inspections/
-      - name: Building code knowledge
-        url: /posts/codes/
-      - name: Navigating disaster recovery
-        url: /posts/recovery/
+    url: /posts/contacts/
+
+    # Add  choldren if adding a sub menu
+    # children:
+    #   - name: Credentialed experts
+    #     url: /posts/experts/
+    #   - name: Inspections & permits
+    #     url: /posts/inspections/
+    #   - name: Building code knowledge
+    #     url: /posts/codes/
+    #   - name: Navigating disaster recovery
+    #     url: /posts/recovery/
 
   
 

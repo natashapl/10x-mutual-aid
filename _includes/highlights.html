@@ -1,50 +1,87 @@
-{% comment %}
-Use this section to highlight key elements of your site. Some
-sites will only have two while others may have six to eight.
-{% endcomment %}
-
-<section class="usa-graphic-list usa-section usa-section--dark" style="padding-top: 20px;">
+<section class="usa-graphic-list home-highlights usa-section usa-section--dark">
   <div class="grid-container">
-    <h2 class="ma-h2" style="color: white;">How can mutual aid help?</h2>
-    <div class="usa-graphic-list__row grid-row grid-gap">
-      <div class="usa-media-block tablet:grid-col">
-        {% image_with_class  "./_img/experts.png" "usa-media-block__img" "alt text" %}
-        <div class="usa-media-block__body">
-          <a href="{{ '/posts/experts' | url }}"><h3 class="usa-graphic-list__heading">Credentialed experts</h3></a>
-          <p>
-            Access organizations and individuals with needed certifications, licenses, and decades of post-disaster rebuilding experience. 
-          </p>
+    <h2 class="font-family-serif">How can mutual aid help?</h2>
+    <ul class="usa-card-group grid-row grid-gap">
+      <li class="usa-card usa-card--flag desktop:grid-col-6 mobile:grid-col-12">
+        <div class="usa-card__container card-1">
+          <div class="usa-card__header">
+            <h3 class="usa-card__heading">
+              Credentialed experts
+            </h3>
+          </div>
+          <div class="usa-card__media">
+            <div class="usa-card__img">
+              {% image_with_class  "./theme/img/experts.svg" "usa-media-block__img" "alt text" %}
+            </div>
+          </div>
+          <div class="usa-card__body">
+            <p>Access organizations and individuals with needed certifications, licenses, and decades of post-disaster rebuilding experience. </p>
+          </div>
+          <div class="usa-card__footer">
+            <a href="{{ '/posts/experts' | url }}" class="usa-button">Learn More</a>
+          </div>
         </div>
-      </div>
-      <div class="usa-media-block tablet:grid-col">
-        {% image_with_class  "./_img/inspections.png" "usa-media-block__img" "alt text" %}
-        <div class="usa-media-block__body">
-          <a href="{{ '/posts/inspections' | url }}"><h3 class="usa-graphic-list__heading">Inspections & permits</h3></a>
-          <p>
-            Find certified personnel that can rapidly deploy to help your community inspect structures and issue building permits. 
-          </p>
+      </li>
+      <li class="usa-card usa-card--flag desktop:grid-col-6 mobile:grid-col-12">
+        <div class="usa-card__container card-2">
+          <div class="usa-card__header">
+            <h3 class="usa-card__heading">
+              Inspections & permits
+            </h3>
+          </div>
+          <div class="usa-card__media">
+            <div class="usa-card__img">
+              {% image_with_class  "./theme/img/inspections.svg" "usa-media-block__img" "alt text" %}
+            </div>
+          </div>
+          <div class="usa-card__body">
+            <p> Find certified personnel that can rapidly deploy to help your community inspect structures and issue building permits. </p>
+          </div>
+          <div class="usa-card__footer">
+            <a href="{{ '/posts/inspections' | url }}" class="usa-button">Learn More</a>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="usa-graphic-list__row grid-row grid-gap">
-      <div class="usa-media-block tablet:grid-col">
-        {% image_with_class  "./_img/codes.png" "usa-media-block__img" "alt text" %}
-        <div class="usa-media-block__body">
-          <a href="{{ '/posts/codes' | url }}"><h3 class="usa-graphic-list__heading">Building code knowledge</h3></a>
-          <p>
-            Get connected with experts that understand the most up-to-date building codes to ensure community safety and resiliency. 
-          </p>
+      </li>
+      <li class="usa-card usa-card--flag desktop:grid-col-6 mobile:grid-col-12">
+        <div class="usa-card__container card-3">
+          <div class="usa-card__header">
+            <h3 class="usa-card__heading">
+              Building code knowledge
+            </h3>
+          </div>
+          <div class="usa-card__media">
+            <div class="usa-card__img">
+              {% image_with_class  "./theme/img/codes.svg" "usa-media-block__img" "alt text" %}
+            </div>
+          </div>
+          <div class="usa-card__body">
+            <p>Get connected with experts that understand the most up-to-date building codes to ensure community safety and resiliency.</p>
+          </div>
+          <div class="usa-card__footer">
+            <a href="{{ '/posts/codes' | url }}" class="usa-button">Learn More</a>
+          </div>
         </div>
-      </div>
-      <div class="usa-media-block tablet:grid-col">
-        {% image_with_class  "./_img/recovery.png" "usa-media-block__img" "alt text" %}
-        <div class="usa-media-block__body">
-          <a href="{{ '/posts/recovery' | url }}"><h3 class="usa-graphic-list__heading">Navigating disaster recovery</h3></a>
-          <p>
-            Learn the process of applying for grants, loans, and other forms of assistance available to communities recovering from disasters.
-          </p>
+      </li>
+      <li class="usa-card usa-card--flag desktop:grid-col-6 mobile:grid-col-12">
+        <div class="usa-card__container card-4">
+          <div class="usa-card__header">
+            <h3 class="usa-card__heading">
+              Navigating disaster recovery
+            </h3>
+          </div>
+          <div class="usa-card__media">
+            <div class="usa-card__img">
+              {% image_with_class  "./theme/img/recovery.svg" "usa-media-block__img" "alt text" %}
+            </div>
+          </div>
+          <div class="usa-card__body">
+            <p>Learn the process of applying for grants, loans, and other forms of assistance available to communities recovering from disasters.</p>
+          </div>
+          <div class="usa-card__footer">
+            <a href="{{ '/posts/recovery' | url }}" class="usa-button">Learn More</a>
+          </div>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>  
   </div>
 </section>

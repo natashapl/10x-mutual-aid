@@ -36,7 +36,7 @@ async function createAssetPaths() {
 
 esbuild
   .build({
-    entryPoints: ['styles/styles.scss', 'js/app.js', 'js/admin.js'],
+    entryPoints: ['theme/styles/index.scss', 'theme/js/app.js', 'theme/js/admin.js'],
     entryNames: '[dir]/[name]-[hash]',
     outdir: '_site/assets',
     format: 'iife',

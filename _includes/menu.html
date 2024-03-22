@@ -2,46 +2,52 @@
 directly or you can look inside _config.yml where we provide an easy way to
 manage your navigation system {% endcomment %}
 
-<header class="usa-header usa-header--extended">
-  <nav style="background-color: #3d4551;">
-    <div class="usa-nav__inner">
+<header class="usa-header usa-header--basic">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <div class="usa-logo">
+        <a href="{{ '/' | url }}">
+          <span class="usa-sr-only">Bringing Mutual Aid</span>
+          <div class="usa-logo" id="basic-logo">
+            <img alt="10x Bring Mutual Aid logo" src="{{ '/assets/img/bm-logo.svg' | url }}">
+          </div>
+        </a>
+      </div>
+      <button type="button" class="usa-menu-btn">Menu</button>
+    </div>
+    <nav aria-label="Primary navigation" class="usa-nav">
+      <button type="button" class="usa-nav__close">
+        <img src="{{'/assets/uswds/img/usa-icons/close.svg' | url }}" role="img" alt="Close" />
+      </button>
       <ul class="usa-nav__primary usa-accordion">
-        <li style="margin-right: 120px; font-family: sans-serif; Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;">
-          <a href="{{ '/' | url }}">{% image_with_class "./_img/logo-img.png" "width-15 height-auto" "Agency logo" %}</a>
-        </li>
         {% for nav_item in primary_navigation %}
-          {% unless nav_item.children %}
+        {% unless nav_item.children %}
         {% assign basedir = page.url | remove_first: '/' | split: '/' | first |
         lstrip %} {% assign linkdir = nav_item.url | replace: "/", "" | lstrip
         %}
         <li class="usa-nav__primary-item">
-          <a
-            class="usa-nav__link{% if basedir == linkdir %} usa-current{% endif %}"
-            href="{{ nav_item.url | url }}"
-            ><span style="color: white;">{{ nav_item.name | escape }}</span></a
-          >
+          <a class="usa-nav-link{% if basedir == linkdir %} usa-current{% endif %}" href="{{ nav_item.url | url }}">
+            <span>{{ nav_item.name | escape }}</span>
+          </a>
         </li>
         {% else %} {% assign nav_id = 'primary-nav-' | append: forloop.index %}
         <li class="usa-nav__primary-item">
-          <button
-            class="usa-accordion__button usa-nav__link"
-            aria-expanded="false"
-            aria-controls="{{ nav_id }}"
-          >
-            <span style="color: white; font-weight: normal;">{{ nav_item.name | escape }}</span>
+          <button type="button" class="usa-accordion__button usa-nav__link usa-current" aria-expanded="false"
+            aria-controls="{{ nav_id }}">
+            <span>{{ nav_item.name | escape }}</span>
           </button>
           <ul id="{{ nav_id }}" class="usa-nav__submenu">
             {% for subnav_item in nav_item.children %}
             <li class="usa-nav__submenu-item">
-              <a style="color: white;" href="{{ subnav_item.url | url }}"
-                >{{ subnav_item.name | escape }}</a
-              >
+              <a href="{{ subnav_item.url | url }}">
+                <span>{{ subnav_item.name | escape }}</span>
+              </a>
             </li>
             {% endfor %}
           </ul>
         </li>
         {% endunless %} {% endfor %}
       </ul>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
