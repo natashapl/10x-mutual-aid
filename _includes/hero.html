@@ -37,11 +37,17 @@
 </section>
 
 <script>
-  document.getElementById('stateForm').addEventListener('submit', function (event) {
-    event.preventDefault();
-    var selectedState = document.getElementById('state').value;
-    if (selectedState) {
-      window.location.href = '/states/' + selectedState + '/';
-    }
-  });
+document.getElementById('stateForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  var selectedState = document.getElementById('state').value;
+
+  // Validate the input
+  if (/^[A-Za-z]{2}$/.test(selectedState)) { 
+    var encodedState = encodeURIComponent(selectedState);
+
+    window.location.href = '/states/' + encodedState + '/';
+  } else {
+    console.error('Invalid state selected');
+  }
+});
 </script>
