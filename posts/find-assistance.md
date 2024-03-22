@@ -7,5 +7,5 @@ tags:
   - posts
 ---
 
-This page is blank
+Updated content is coming soon.
 
