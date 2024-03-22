@@ -10,21 +10,26 @@ The home page uses wide.html layout, since it extends full width of page
 {% include "meta.html" %}
 
 <body>
-  {% include "header.html" %}
+  <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+  <div class="usa-app {% if theme %}usa-app__theme-{{ theme }}{% endif %}">
+    {% include "header.html" %}
 
-  {% include "menu.html" primary_navigation: site.primary_navigation secondary_navigation: site.secondary_navigation %}
+    {% include "menu.html" primary_navigation: site.primary_navigation secondary_navigation: site.secondary_navigation
+    %}
 
-  {{ content }}
+    {{ content }}
 
-  {% include "footer.html" %}
+    {% include "footer.html" %}
 
-  {% comment %} Hide SVG Sprites {% endcomment %}
-  <div style="display: none;">
-    {% usa_icons_sprite %}
-    {% uswds_icons_sprite %}
+    <!-- {% comment %} Hide SVG Sprites {% endcomment %}
+    <div style="display: none;">
+      {% usa_icons_sprite %}
+      {% uswds_icons_sprite %}
+    </div> -->
   </div>
 
   {% include "scripts.html" %}
+
 </body>
 
 </html>

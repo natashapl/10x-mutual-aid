@@ -17,6 +17,11 @@ module.exports = function (config) {
 
   // Copy USWDS init JS so we can load it in HEAD to prevent banner flashing
   config.addPassthroughCopy({'./node_modules/@uswds/uswds/dist/js/uswds-init.js': 'assets/js/uswds-init.js'});
+  config.addPassthroughCopy({ './node_modules/@uswds/uswds/dist/img': 'assets/uswds/img' });
+  config.addPassthroughCopy({ './node_modules/@uswds/uswds/dist/fonts': 'assets/fonts' });
+  config.addPassthroughCopy({ './theme/img': 'assets/img' });
+  config.addPassthroughCopy({ './favicon': '/favicon' });
+  config.addPassthroughCopy({ './favicon/favicon.ico': '/myfavicon.ico' });
 
   // Add plugins
   config.addPlugin(pluginRss);

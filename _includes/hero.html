@@ -1,14 +1,47 @@
-{% comment %}
-This will be displayed on the homepage. Ideally, you want to highlight key goals of the website
-{% endcomment %}
+<section class="usa-hero" aria-label="Introduction">
+  <div class="grid-container">
+    <div class="usa-hero__callout">
+      <h1 class="usa-hero__heading margin-bottom-4">
+        Find mutual aid resources to help your local building department
+      </h1>
+      <div class="grid-container">
+        <form class="usa-form" id="stateForm">
+          <fieldset class="usa-fieldset">
+            <legend class="usa-legend margin-bottom-1">
+              Enter your location to discover mutual aid resources available in your area to assist post-disaster
+              rebuilding.
+            </legend>
 
-<section class="usa-hero" style="text-align: center;">
-  <div style="background-image: linear-gradient(rgb(0, 0, 0), rgba(255,0,0,0));"">
-    <h1 class="ma-h2" style="color: white; padding: 40px 0 60px 0;">Your rebuilding journey starts here</h1>
-    <div style="width: 360px; background-color: #565c65; padding: 15px; margin: auto; text-align: left;">
-      Find mutual aid partners to help supplement your community's building department functions during post-disaster recovery.
+            <label class="usa-label" for="state">
+              State or Territory
+            </label>
+            <div class="grid-row grid-gap-2">
+              <span class="desktop:grid-col-7 mobile:grid-col-12 margin-bottom-2">
+                <select class="usa-select" id="state" name="state">
+                  <option value>- Select -</option>
+                  {% for item in csvData %}
+                  <option value="{{ item.Abbr | slug }}">{{ item.Abbr }} - {{ item.State }}</option>
+                  {% endfor %}
+                </select>
+              </span>
+              <span class="desktop:grid-col-5 mobile:grid-col-12">
+                <input class="usa-button" type="submit" value="View aid options" />
+              </span>
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
     </div>
-    <a class="usa-button" href="{{ '/location/' | url }}" style="margin: 50px 0 50px 0;">Find help now</a>
-
   </div>
 </section>
+
+<script>
+  document.getElementById('stateForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var selectedState = document.getElementById('state').value;
+    if (selectedState) {
+      window.location.href = '/states/' + selectedState + '/';
+    }
+  });
+</script>
