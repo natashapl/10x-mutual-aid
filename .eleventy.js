@@ -133,6 +133,7 @@ module.exports = function (config) {
       <use xlink:href="#svg-${name}"></use>
     </svg>`;
   });
+  
 
   // If BASEURL env variable exists, update pathPrefix to the BASEURL
   if (process.env.BASEURL) {

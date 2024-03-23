@@ -97,11 +97,15 @@ body {
       border: 1px solid white;
       background: color('green-60v');
       font-weight: 400;
-      font-size: units(2.5);
+      font-size: size('body', 8);
       line-height: line-height('body', 2);
       padding: units(1.5) units(1.5) units(1.5) units(5);    
       text-align: center;
       background: color('green-60v') url('../img/help-icon.svg')  no-repeat units(1) center; 
+
+      @include at-media(desktop) {
+        font-size: size('body', 5);
+      }
     }
 
     select,
