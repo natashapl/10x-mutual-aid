@@ -1,8 +1,8 @@
 ---
-title: Credentialed experts
-description: Credentialed experts
+title: Training & resources
+description: Training & resources
 layout: layouts/post
-excerpt: Credentialed experts
+excerpt: Training & resources
 
 tags:
   - posts
