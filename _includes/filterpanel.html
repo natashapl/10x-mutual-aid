@@ -1,0 +1,123 @@
+<aside class="usa-layout-docs-sidenav desktop:grid-col-3 mobile:grid-col-12 padding-bottom-4">
+  <nav>
+    <ul class="usa-sidenav">
+      <li>
+        <form class="usa-form padding-3" id="stateForm">
+          <fieldset class="usa-fieldset">
+            <legend class="usa-legend margin-bottom-1">
+              <svg class="usa-icon margin-top-2px" aria-hidden="true" focusable="false" role="img">
+                <use xlink:href="{{ '/assets/uswds/img/sprite.svg#filter_alt' | url }}"></use>
+              </svg>
+              <span class="display-inline-block">Filter Results</span>
+            </legend>
+            <section class="location-section">
+              <label class="usa-label" for="state">
+                Location
+              </label>
+              <select class="usa-select" id="state" name="state">
+                <option value>- Select -</option>
+                {% for item in csvData %}
+                <option value="{{ item.Abbr | slug }}">{{ item.Abbr }} - {{ item.State }}</option>
+                {% endfor %}
+              </select>
+            </section>
+            <section class="support-type--section">
+              <h4 class="site-preview-heading">Support Type</h4>
+              <div class="usa-checkbox">
+                <input class="usa-checkbox__input filter-checkbox" id="public-personnel" type="checkbox"
+                  name="public-personnel" value="public-personnel" data-section-id="public-personnel-section" checked />
+                <label class="usa-checkbox__label" for="public-personnel">Public personnel</label>
+              </div>
+              <div class="usa-checkbox">
+                <input class="usa-checkbox__input filter-checkbox" id="private-companies" type="checkbox"
+                  name="private-companies" value="private-companies" data-section-id="private-companies-section"
+                  checked />
+                <label class="usa-checkbox__label" for="private-companies">Private Companies</label>
+              </div>
+            </section>
+            <section class="resource-level-section">
+              <h4 class="site-preview-heading">Resource Level</h4>
+              <div class="usa-checkbox">
+                <input class="usa-checkbox__input filter-checkbox" id="state-territory" type="checkbox"
+                  name="state-territory" value="state-territory" data-section-id="state-mutual-aid-section" checked />
+                <label class="usa-checkbox__label" for="state-territory">State/Territory</label>
+              </div>
+              <div class="usa-checkbox">
+                <input class="usa-checkbox__input filter-checkbox" id="national" type="checkbox" name="national"
+                  value="national" data-section-id="national-mutual-aid-section" checked />
+                <label class="usa-checkbox__label" for="national">National</label>
+              </div>
+            </section>
+          </fieldset>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Function to toggle visibility of sections
+    function toggleSection(sectionId, isVisible) {
+      let section = document.getElementById(sectionId);
+      if (section) {
+        section.style.display = isVisible ? 'block' : 'none';
+      }
+    }
+
+    //Build state url
+    function buildStateUrl(selectedState) {
+      var pathname = window.location.pathname;
+      // Split the pathname into segments
+      var segments = pathname.split('/');
+
+      // Extract the base path up to "/states/"
+      var stateIndex = segments.indexOf('states');
+      var basePath = segments.slice(0, stateIndex).join('/');
+
+      // Build the new URL
+      var newUrl = basePath + '/states/' + selectedState + '/';
+      return newUrl;
+    }
+
+    // Attach event listener directly to state dropdown
+    const stateSelect = document.getElementById('state');
+    if (stateSelect) {
+      stateSelect.addEventListener('change', function () {
+        var selectedState = this.value;
+        if (/^[A-Za-z]{2}$/.test(selectedState)) {
+          window.location.href = buildStateUrl(selectedState);
+        } else {
+          console.error('Invalid state selected');
+        }
+      });
+    }
+
+    // Event listener for checkboxes
+    document.querySelectorAll('.filter-checkbox').forEach(function (checkbox) {
+      checkbox.addEventListener('change', function () {
+        let isChecked = this.checked;
+        let sectionId = this.getAttribute('data-section-id');
+        toggleSection(sectionId, isChecked);
+      });
+    });
+
+    //Function to extract state code from the URL path (e.g., /states/ny/)
+    function getCurrentStateFromPath() {
+      const pathSegments = window.location.pathname.split('/');
+      // Assuming the URL pattern is /states/{stateCode}/
+      const stateIndex = pathSegments.indexOf('states');
+      if (stateIndex >= 0 && stateIndex < pathSegments.length - 1) {
+        return pathSegments[stateIndex + 1];
+      }
+      return null;
+    }
+
+    const currentState = getCurrentStateFromPath();
+
+    if (currentState) {
+      const stateSelect = document.getElementById('state');
+      stateSelect.value = currentState;
+    }
+  });
+</script>
