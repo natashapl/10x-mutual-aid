@@ -2,16 +2,14 @@
 layout: layouts/base
 ---
 
-<div id="main-content" class="usa-layout-docs usa-section">
+<div class="usa-section {{ className }}">
   <div class="grid-container">
     <div class="grid-row grid-gap">
       {% if sidenav == true %}
       {% include "sidenav.html" %}
       {% endif %}
-      <main>
-        <div class="usa-layout-docs__main desktop:grid-col-9 usa-prose {{ className }}">
-            {{ content }}
-        </div>
+      <main class="desktop:grid-col-9 usa-prose" id="main-content">
+        {{ content }}
       </main>
     </div>
   </div>

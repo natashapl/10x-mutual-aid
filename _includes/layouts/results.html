@@ -1,23 +1,108 @@
 ---
-layout: layouts/default
+layout: layouts/base
 ---
 
-{% comment %}
-This is used in blog posts. The index page can be found at blog/index.html
-{% endcomment %}
-
-<div class="usa-layout-docs usa-section">
+<div class="usa-section {{ className }}">
   <div class="grid-container">
     <div class="grid-row grid-gap">
-      <div class="usa-layout-docs__main desktop:grid-col-9 usa-prose">
-        <h1 class="title">{{title}}</h1>
-        {{ content }}
+      <main class="grid-col-12 usa-prose" id="main-content">
+        <h1>Mutual Aid Assistance Results</h1>
+        <div class="usa-alert usa-alert--warning grid-container padding-x-0">
+          <div class="usa-alert__body">
+            <h4 class="usa-alert__heading">Disclaimer</h4>
+            <div class="usa-alert__text grid-row grid-gap">
+              <div class="mobile:grid-col-12 desktop:grid-col-10">
+                This website contains references to non-federal resources and organizations. The references are solely
+                for informational purposes and are not an endorsement of any non-federal entity by FEMA, Department of
+                Homeland Security, or the U.S. government.
+              </div>
+              <div class="mobile:grid-col-12 desktop:grid-col-2">
+                <button class="usa-button disclaimer-button" type="button">View full disclaimer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contentRow margin-top-4">
+          <div class="grid-row grid-gap">
+            {% include "./filterpanel.html" %}
+            <div class="desktop:grid-col-9 mobile:grid-col-12">
+              {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".png" %}
+              {% assign imacPrivate = item["IMAC Private"] %}
 
-        {% for item in csvData %}
-        <h2>{{ item.State }}</h2>
-        <p>{{ item["EMAC Description"] }}</p>
-        {% endfor %}
-      </div>
+              {% assign first_eight = imacPrivate | downcase | slice: 0, 8 %}
+              {% if first_eight == "no known" %}
+              {% assign modifiedString = "has " | append: imacPrivate | downcase %}
+              {% else %}
+              {% assign modifiedString = imacPrivate %}
+              {% endif %}
+              <section class="usa-section intro-section">
+                <div class="grid-row grid-gap">
+                  <div class="image-block desktop:grid-col-3 mobile:grid-col-12">
+                    <img src="{{ imagePath | url }}" role="img" alt="{{ item.State }}" aria-hidden="true" />
+                  </div>
+                  <div class="intro-content-block desktop:grid-col-9 mobile:grid-col-12">
+                    <h2 class="margin-y-0">
+                      Overview of Mutual Aid Resources Available in {{ item.State }}
+                    </h2>
+                    <ul class="usa-list">
+                      <li>{{ item.State }} {{ item["IMAC Description"] | downcase }}</li>
+                      <li>{{ item.State }} {{ item["EMAC Public/Private"] | downcase }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+              <section id="state-mutual-aid-section" class="usa-section">
+                <h2 class="margin-y-0 {{first_eight == 'No known'}}">
+                  State Mutual Aid Resources
+                </h2>
+                <div class="grid-container">
+                  <h3>
+                    Intrastate Mutual Aid Compact (IMAC)
+                  </h3>
+                  <div id="public-personnel-section">
+                    <h4>IMAC Public</h4>
+                    <ul class="usa-list">
+                      <li>{{ item.State }} {{ item["IMAC Public"] | downcase }}</li>
+                    </ul>
+                  </div>
+                  <div id="private-companies-section">
+                    <h4>IMAC Private</h4>
+                    <ul class="usa-list">
+                      <li>{{ item.State }} {{ modifiedString }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+              <section id="national-mutual-aid-section" class="usa-section">
+                <h2 class="margin-y-0">
+                  National Mutual Aid Resources
+                </h2>
+                <div class="grid-container">
+                  <h3>
+                    Emergency Mutual Aid Compact (EMAC)
+                  </h3>
+                  <h4>EMAC Status</h4>
+                  <table class="usa-table usa-table--striped">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Standard EMAC</th>
+                        <td>
+                          {{ item["EMAC Description"] }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h4>EMAC Public/Private Details</h4>
+                  <ul class="usa-list">
+                    <li>{{ item.State }} {{ item["EMAC Public/Private"] | downcase }}</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        {{ content }}
+      </main>
     </div>
   </div>
 </div>
