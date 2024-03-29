@@ -56,7 +56,7 @@
 </aside>
 
 <script>
-  const baseUrl = '{{ pathPrefix }}';
+  var baseUrl = '{{ pathPrefix }}';
 
   document.addEventListener('DOMContentLoaded', function () {
     // Function to toggle visibility of sections
@@ -67,13 +67,28 @@
       }
     }
 
+    //Build state url
+    function buildStateUrl(selectedState) {
+      var pathname = window.location.pathname;
+      // Split the pathname into segments
+      var segments = pathname.split('/');
+
+      // Extract the base path up to "/states/"
+      var stateIndex = segments.indexOf('states');
+      var basePath = segments.slice(0, stateIndex).join('/');
+
+      // Build the new URL
+      var newUrl = basePath + '/states/' + selectedState + '/';
+      return newUrl;
+    }
+
     // Attach event listener directly to state dropdown
     const stateSelect = document.getElementById('state');
     if (stateSelect) {
       stateSelect.addEventListener('change', function () {
         var selectedState = this.value;
         if (/^[A-Za-z]{2}$/.test(selectedState)) {
-          window.location.href = baseUrl + '/states/' + selectedState + '/';
+          window.location.href = buildStateUrl(selectedState);
         } else {
           console.error('Invalid state selected');
         }
