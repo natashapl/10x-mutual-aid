@@ -73,7 +73,7 @@
       stateSelect.addEventListener('change', function () {
         var selectedState = this.value;
         if (/^[A-Za-z]{2}$/.test(selectedState)) {
-          window.location.href = '/states/' + selectedState + '/';
+          window.location.href = baseUrl + '/states/' + selectedState + '/';
         } else {
           console.error('Invalid state selected');
         }
