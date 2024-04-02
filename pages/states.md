@@ -6,5 +6,6 @@ pagination:
   size: 1
   alias: item
   addAllPagesToCollections: true
+title: '{{ item.State }}'
 permalink: "/states/{{ item.Abbr | slug }}/index.html"
 ---

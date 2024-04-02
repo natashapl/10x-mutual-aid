@@ -47,6 +47,9 @@
                   value="national" data-section-id="national-mutual-aid-section" checked />
                 <label class="usa-checkbox__label" for="national">National</label>
               </div>
+              <div class="contentRow">
+                <input class="usa-button" type="submit" value="Apply" />
+              </div>
             </section>
           </fieldset>
         </form>
@@ -80,18 +83,17 @@
       return newUrl;
     }
 
-    // Attach event listener directly to state dropdown
-    const stateSelect = document.getElementById('state');
-    if (stateSelect) {
-      stateSelect.addEventListener('change', function () {
-        var selectedState = this.value;
-        if (/^[A-Za-z]{2}$/.test(selectedState)) {
-          window.location.href = buildStateUrl(selectedState);
-        } else {
-          console.error('Invalid state selected');
-        }
-      });
-    }
+    //Attach event listener directly to state dropdown after submit
+    document.getElementById('stateForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var selectedState = document.getElementById('state').value;
+      if (/^[A-Za-z]{2}$/.test(selectedState)) {
+        var encodedState = encodeURIComponent(selectedState);
+        window.location.href = buildStateUrl(encodedState);
+      } else {
+        console.error('Invalid state selected');
+      }
+    });
 
     // Event listener for checkboxes
     document.querySelectorAll('.filter-checkbox').forEach(function (checkbox) {
