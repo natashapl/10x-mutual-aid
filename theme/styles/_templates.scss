@@ -8,6 +8,14 @@ body {
   margin: 0;
 }
 
+iframe:focus, 
+[href]:focus, 
+[tabindex]:focus, 
+[contentEditable=true]:focus {
+  outline: 1px auto  color('blue-40v');
+  outline-offset: 0.3rem;
+}
+
 .usa-app {
   box-sizing: border-box;
   min-height: 100%;
@@ -360,7 +368,14 @@ body {
 }
 
 .usa-footer {
+  background: color('gray-cool-70');
+  color: white;
   flex-shrink: 0;
+  font-size: size('body', 5);
+
+  h5 {
+    font-size: size('heading', 5);
+  }
 
   ul {
     li {

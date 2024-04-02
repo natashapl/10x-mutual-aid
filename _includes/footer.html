@@ -1,5 +1,5 @@
 <footer class="usa-footer site-footer" role="contentinfo">
-  <div class="footer-section-bottom bg-base-lighter" style="background-color: #3D4551; color: white;">
+  <div class="footer-section-bottom">
     <div class="grid-container">
       <div class="grid-row padding-3">
         <div class="tablet:grid-col">
@@ -31,8 +31,10 @@
         </div>
         <div class="tablet:grid-col">
           <div class="logo-links">
-            <a class="footer-logo media_link" href="https://cloud.gov">
-              {% image_with_class "./theme/img/logo-img.png" "Agency logo" %}
+            <a class="footer-logo media_link" href="{{ '/' | url }}">
+              <div class="usa-logo">
+                <img alt="10x Bring Mutual Aid logo" src="{{ '/assets/img/bm-logo.svg' | url }}">
+              </div>
             </a>
           </div>
           <div style="font-size: smaller;">
