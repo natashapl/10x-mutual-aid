@@ -38,7 +38,7 @@ layout: layouts/base
               <section class="usa-section intro-section">
                 <div class="grid-row grid-gap">
                   <div class="image-block desktop:grid-col-3 mobile:grid-col-12">
-                    <img src="{{ imagePath | url }}" role="img" alt="{{ item.State }}" aria-hidden="true" />
+                    <img src="{{ imagePath | url }}" role="img" alt="" aria-hidden="true" />
                   </div>
                   <div class="intro-content-block desktop:grid-col-9 mobile:grid-col-12">
                     <h2 class="margin-y-0">
@@ -59,6 +59,9 @@ layout: layouts/base
                   <h3>
                     Intrastate Mutual Aid Compact (IMAC)
                   </h3>
+                  <div id="supportTypeMessage" style="display: none;">
+                    <p>No support type has been selected.</p>
+                  </div>
                   <div id="public-personnel-section">
                     <h4>IMAC Public</h4>
                     <ul class="usa-list">
