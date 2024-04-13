@@ -16,12 +16,12 @@
               </label>
               <select class="usa-select" id="state" name="state">
                 <option value>- Select -</option>
-                {% for item in csvData %}
+                {% for item in csvData.stantecMABD %}
                 <option value="{{ item.Abbr | slug }}">{{ item.Abbr }} - {{ item.State }}</option>
                 {% endfor %}
               </select>
             </section>
-            <section class="support-type--section">
+            <section class="support-type-section">
               <h4 class="site-preview-heading">Support Type</h4>
               <div class="usa-checkbox">
                 <input class="usa-checkbox__input filter-checkbox" id="public-personnel" type="checkbox"
@@ -43,6 +43,11 @@
                 <label class="usa-checkbox__label" for="state-territory">State/Territory</label>
               </div>
               <div class="usa-checkbox">
+                <input class="usa-checkbox__input filter-checkbox" id="regional" type="checkbox"
+                  name="regional" value="regional" data-section-id="regional-mutual-aid-section" checked />
+                <label class="usa-checkbox__label" for="regional">Regional</label>
+              </div>
+              <div class="usa-checkbox">
                 <input class="usa-checkbox__input filter-checkbox" id="national" type="checkbox" name="national"
                   value="national" data-section-id="national-mutual-aid-section" checked />
                 <label class="usa-checkbox__label" for="national">National</label>
@@ -60,6 +65,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    let checkboxStates = {};
+
     // Function to toggle visibility of sections
     function toggleSection(sectionId, isVisible) {
       let section = document.getElementById(sectionId);
@@ -68,46 +75,87 @@
       }
     }
 
-    //Build state url
+    // Build state url
     function buildStateUrl(selectedState) {
-      var pathname = window.location.pathname;
-      // Split the pathname into segments
-      var segments = pathname.split('/');
-
-      // Extract the base path up to "/states/"
-      var stateIndex = segments.indexOf('states');
-      var basePath = segments.slice(0, stateIndex).join('/');
-
-      // Build the new URL
-      var newUrl = basePath + '/states/' + selectedState + '/';
+      let pathname = window.location.pathname;
+      let segments = pathname.split('/');
+      let stateIndex = segments.indexOf('states');
+      let basePath = segments.slice(0, stateIndex).join('/');
+      let newUrl = basePath + '/states/' + selectedState + '/';
       return newUrl;
     }
 
-    //Attach event listener directly to state dropdown after submit
+    function updateSupportTypeMessage() {
+      let publicPersonnelChecked = document.getElementById('public-personnel').checked;
+      let privateCompaniesChecked = document.getElementById('private-companies').checked;
+
+      let messageElement = document.getElementById('supportTypeMessage');
+      if (!publicPersonnelChecked && !privateCompaniesChecked) {
+        messageElement.style.display = 'block';
+      } else {
+        messageElement.style.display = 'none';
+      }
+    }
+
+    // function updateStateTerritoryCheckbox() {
+    //   let publicPersonnelChecked = document.getElementById('public-personnel').checked;
+    //   let privateCompaniesChecked = document.getElementById('private-companies').checked;
+    //   let stateTerritoryCheckbox = document.getElementById('state-territory');
+
+    //   if (publicPersonnelChecked || privateCompaniesChecked) {
+    //     stateTerritoryCheckbox.checked = true;
+    //     checkboxStates['state-mutual-aid-section'] = true;
+    //   }
+
+    //   // Update local storage with the new state
+    //   localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
+    // }
+
+    // Initialize checkboxStates from local storage if available
+    let storedCheckboxStates = localStorage.getItem('checkboxStates');
+    if (storedCheckboxStates) {
+      checkboxStates = JSON.parse(storedCheckboxStates);
+    }
+
+    document.querySelectorAll('.filter-checkbox').forEach(function (checkbox) {
+      let sectionId = checkbox.getAttribute('data-section-id');
+      checkbox.checked = checkboxStates.hasOwnProperty(sectionId) ? checkboxStates[sectionId] : checkbox.checked;
+
+      checkbox.addEventListener('change', function () {
+        checkboxStates[sectionId] = this.checked;
+      });
+    });
+
     document.getElementById('stateForm').addEventListener('submit', function(event) {
       event.preventDefault();
-      var selectedState = document.getElementById('state').value;
+      let selectedState = document.getElementById('state').value;
+
+      // Store the checkbox states in local storage
+      localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
+
+      // Handle state change if a valid state is selected
       if (/^[A-Za-z]{2}$/.test(selectedState)) {
-        var encodedState = encodeURIComponent(selectedState);
+        let encodedState = encodeURIComponent(selectedState);
         window.location.href = buildStateUrl(encodedState);
       } else {
         console.error('Invalid state selected');
       }
+
+      updateSupportTypeMessage();
+      updateStateTerritoryCheckbox(); 
     });
 
-    // Event listener for checkboxes
-    document.querySelectorAll('.filter-checkbox').forEach(function (checkbox) {
-      checkbox.addEventListener('change', function () {
-        let isChecked = this.checked;
-        let sectionId = this.getAttribute('data-section-id');
-        toggleSection(sectionId, isChecked);
-      });
-    });
+    // Apply stored checkbox states to sections
+    if (storedCheckboxStates) {
+      for (let sectionId in checkboxStates) {
+        let isVisible = checkboxStates[sectionId];
+        toggleSection(sectionId, isVisible);
+      }
+    }
 
-    //Function to extract state code from the URL path (e.g., /states/ny/)
+    // Function to extract state code from the URL path
     function getCurrentStateFromPath() {
       const pathSegments = window.location.pathname.split('/');
-      // Assuming the URL pattern is /states/{stateCode}/
       const stateIndex = pathSegments.indexOf('states');
       if (stateIndex >= 0 && stateIndex < pathSegments.length - 1) {
         return pathSegments[stateIndex + 1];
@@ -121,5 +169,14 @@
       const stateSelect = document.getElementById('state');
       stateSelect.value = currentState;
     }
+
+
+    // Also call updateSupportTypeMessage when checkboxes change
+    //document.getElementById('public-personnel').addEventListener('change', updateSupportTypeMessage);
+    //document.getElementById('private-companies').addEventListener('change', updateSupportTypeMessage);
+
+    // Initialize the message state on page load
+    updateSupportTypeMessage();
+
   });
 </script>
