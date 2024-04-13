@@ -16,7 +16,7 @@
               </label>
               <select class="usa-select" id="state" name="state">
                 <option value>- Select -</option>
-                {% for item in csvData %}
+                {% for item in csvData.stantecMABD %}
                 <option value="{{ item.Abbr | slug }}">{{ item.Abbr }} - {{ item.State }}</option>
                 {% endfor %}
               </select>
@@ -41,6 +41,11 @@
                 <input class="usa-checkbox__input filter-checkbox" id="state-territory" type="checkbox"
                   name="state-territory" value="state-territory" data-section-id="state-mutual-aid-section" checked />
                 <label class="usa-checkbox__label" for="state-territory">State/Territory</label>
+              </div>
+              <div class="usa-checkbox">
+                <input class="usa-checkbox__input filter-checkbox" id="regional" type="checkbox"
+                  name="regional" value="regional" data-section-id="regional-mutual-aid-section" checked />
+                <label class="usa-checkbox__label" for="regional">Regional</label>
               </div>
               <div class="usa-checkbox">
                 <input class="usa-checkbox__input filter-checkbox" id="national" type="checkbox" name="national"
@@ -92,19 +97,19 @@
       }
     }
 
-    function updateStateTerritoryCheckbox() {
-      var publicPersonnelChecked = document.getElementById('public-personnel').checked;
-      var privateCompaniesChecked = document.getElementById('private-companies').checked;
-      var stateTerritoryCheckbox = document.getElementById('state-territory');
+    // function updateStateTerritoryCheckbox() {
+    //   let publicPersonnelChecked = document.getElementById('public-personnel').checked;
+    //   let privateCompaniesChecked = document.getElementById('private-companies').checked;
+    //   let stateTerritoryCheckbox = document.getElementById('state-territory');
 
-      if (publicPersonnelChecked || privateCompaniesChecked) {
-        stateTerritoryCheckbox.checked = true;
-        checkboxStates['state-mutual-aid-section'] = true;
-      }
+    //   if (publicPersonnelChecked || privateCompaniesChecked) {
+    //     stateTerritoryCheckbox.checked = true;
+    //     checkboxStates['state-mutual-aid-section'] = true;
+    //   }
 
-      // Update local storage with the new state
-      localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
-    }
+    //   // Update local storage with the new state
+    //   localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
+    // }
 
     // Initialize checkboxStates from local storage if available
     let storedCheckboxStates = localStorage.getItem('checkboxStates');

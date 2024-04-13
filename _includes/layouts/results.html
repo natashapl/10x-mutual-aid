@@ -28,6 +28,7 @@ layout: layouts/base
             <div class="desktop:grid-col-9 mobile:grid-col-12">
               {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".png" %}
               {% assign imacPrivate = item["IMAC Private"] %}
+              {% assign stateString = item.State %}
 
               {% assign first_eight = imacPrivate | downcase | slice: 0, 8 %}
               {% if first_eight == "no known" %}
@@ -45,8 +46,8 @@ layout: layouts/base
                       Overview of Mutual Aid Resources Available in {{ item.State }}
                     </h2>
                     <ul class="usa-list">
-                      <li>{{ item.State }} {{ item["IMAC Description"] | downcase }}</li>
-                      <li>{{ item.State }} {{ item["EMAC Public/Private"] | downcase }}</li>
+                      <li>{{ stateString }} {{ item["IMAC Description"] | downcase }}</li>
+                      <li>{{ stateString }} {{ item["EMAC Public/Private"] | downcase }}</li>
                     </ul>
                   </div>
                 </div>
@@ -65,15 +66,80 @@ layout: layouts/base
                   <div id="public-personnel-section">
                     <h4>IMAC Public</h4>
                     <ul class="usa-list">
-                      <li>{{ item.State }} {{ item["IMAC Public"] | downcase }}</li>
+                      <li>{{ stateString }} {{ item["IMAC Public"] | downcase }}</li>
                     </ul>
                   </div>
                   <div id="private-companies-section">
                     <h4>IMAC Private</h4>
                     <ul class="usa-list">
-                      <li>{{ item.State }} {{ modifiedString }}</li>
+                      <li>{{ stateString }} {{ modifiedString }}</li>
                     </ul>
                   </div>
+                </div>
+              </section>
+
+              <section id="regional-mutual-aid-section" class="usa-section">
+                <h2 class="margin-y-0">
+                  Regional Mutual Aid Resources
+                </h2>
+                {% assign stateData = csvData.contactsByState %}
+                <div class="grid-container">
+                  {% for entry in stateData %}
+                  {% if entry.state == item.Abbr %}
+                  <div class="contact-infomration">
+                    <h3>
+                      {{ entry.orgName }}               
+                    </h3>
+                    <h4>Contact Information</h4>
+                    <ul class="usa-list">
+                      {% for contact in entry.contacts %}
+                      <li>
+                        {% if contact['First Name'] or contact['Title / Org'] != blank %}
+                        <p>
+                          {% if contact['First Name'] != blank %}
+                          {{ contact['First Name'] }} {{ contact['Last Name'] }} - <br>
+                          {% endif %}
+
+                          {% if contact['Title / Org'] != blank %}
+                          {{ contact['Title / Org'] }}
+                          {% endif %}
+                        </p>
+                        {% endif %}
+
+                        {% if contact['Address 1'] != blank or contact['Address 2'] != blank or contact['City'] != blank%}
+                        <p>
+                          {% if contact['Address 1'] != blank %}
+                          {{ contact['Address 1'] }}<br>
+                          {% endif %}
+
+                          {% if contact['Address 2'] != blank %}
+                          {{ contact['Address 2'] }}<br>
+                          {% endif %}
+
+                          {% if contact['City'] != blank %}
+                          {{ contact['City'] }}, {{ contact['State'] }} {{ contact['Zip'] }}
+                          {% endif %}
+                        </p> 
+                        {% endif %}
+
+                        <p>
+                          {% if contact['Telephone'] != blank %}
+                          Office: {{ contact['Telephone'] }} <br>
+                          {% endif %}
+
+                          {% if contact['Cell'] != blank %}
+                          Cell: {{ contact['Cell'] }}
+                          {% endif %}
+                        </p>
+                        {% if contact['E-mail'] != blank %}
+                        <p>Email: {{ contact['E-mail'] }}</p>
+                        {% endif %}
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
                 </div>
               </section>
               <section id="national-mutual-aid-section" class="usa-section">
@@ -97,7 +163,7 @@ layout: layouts/base
                   </table>
                   <h4>EMAC Public/Private Details</h4>
                   <ul class="usa-list">
-                    <li>{{ item.State }} {{ item["EMAC Public/Private"] | downcase }}</li>
+                    <li>{{ stateString }} {{ item["EMAC Public/Private"] | downcase }}</li>
                   </ul>
                 </div>
               </section>

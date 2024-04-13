@@ -2,7 +2,7 @@
 layout: layouts/results
 className: "state-results-page"
 pagination:
-  data: csvData
+  data: csvData.stantecMABD
   size: 1
   alias: item
   addAllPagesToCollections: true
