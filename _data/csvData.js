@@ -22,7 +22,7 @@ module.exports = async function() {
   data2.forEach(contact => {
     contact['States Covered'].split(', ').forEach(state => {
       state = state.trim();
-      const orgName = contact['Mutual Aid Org '].trim();
+      const orgName = contact['Mutual Aid Org'].trim();
       let entry = contactsByState.find(entry => entry.state === state && entry.orgName === orgName);
       if (!entry) {
         entry = { state: state, orgName: orgName, contacts: [] };
