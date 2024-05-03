@@ -1,4 +1,6 @@
 <section class="usa-hero" aria-label="Introduction">
+  <img fetchpriority="high" src="{{ '/assets/img/hero.webp' | url }}" alt="" width="0" height="0"
+    style="display: none !important;" />
   <div class="grid-container">
     <div class="usa-hero__callout">
       <h1 class="usa-hero__heading margin-bottom-4">
@@ -39,7 +41,7 @@
 <script>
   var baseUrl = '{{ pathPrefix }}';
 
-  document.getElementById('stateForm').addEventListener('submit', function(event) {
+  document.getElementById('stateForm').addEventListener('submit', function (event) {
     event.preventDefault();
     var selectedState = document.getElementById('state').value;
     if (/^[A-Za-z]{2}$/.test(selectedState)) {
