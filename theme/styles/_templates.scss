@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+img {
+  height: auto;
+}
+
 iframe:focus, 
 [href]:focus, 
 [tabindex]:focus, 
@@ -45,6 +49,16 @@ iframe:focus,
 .usa-logo {
   a {
     color: white;
+
+    img {
+      max-width: 184px;
+    }
+
+    @include at-media(desktop) {
+      img {
+        max-width: 100%;
+      }
+    }   
   }
 }
 
@@ -258,8 +272,8 @@ iframe:focus,
   }
 
   .usa-alert {
-    h4 {
-      font-weight: 600;
+    .usa-alert__heading {
+      color: black;
     }
 
     .usa-alert__body {
@@ -361,6 +375,10 @@ iframe:focus,
       font-weight: 600;
     }
 
+    p {
+      margin-top: units(3);
+    }
+
     .usa-checkbox {
       background: none;
     }
@@ -377,7 +395,7 @@ iframe:focus,
   flex-shrink: 0;
   font-size: size('body', 5);
 
-  h5 {
+  h4 {
     font-size: size('heading', 5);
   }
 

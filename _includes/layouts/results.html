@@ -9,7 +9,7 @@ layout: layouts/base
         <h1>Mutual Aid Assistance Results</h1>
         <div class="usa-alert usa-alert--warning grid-container padding-x-0">
           <div class="usa-alert__body">
-            <h4 class="usa-alert__heading">Disclaimer</h4>
+            <h2 class="usa-alert__heading">Disclaimer</h2>
             <div class="usa-alert__text grid-row grid-gap">
               <div class="mobile:grid-col-12 desktop:grid-col-10">
                 This website contains references to non-federal resources and organizations. The references are solely
@@ -26,7 +26,7 @@ layout: layouts/base
           <div class="grid-row grid-gap">
             {% include "./filterpanel.html" %}
             <div class="desktop:grid-col-9 mobile:grid-col-12">
-              {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".png" %}
+              {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".webp" %}
               {% assign imacPrivate = item["IMAC Private"] %}
               {% assign stateString = item.State %}
 
@@ -39,7 +39,7 @@ layout: layouts/base
               <section class="usa-section intro-section">
                 <div class="grid-row grid-gap">
                   <div class="image-block desktop:grid-col-3 mobile:grid-col-12">
-                    <img src="{{ imagePath | url }}" role="img" alt="" aria-hidden="true" />
+                    <img src="{{ imagePath | url }}" role="img" alt="" aria-hidden="true" width="154" height="154" />
                   </div>
                   <div class="intro-content-block desktop:grid-col-9 mobile:grid-col-12">
                     <h2 class="margin-y-0">
