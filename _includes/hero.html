@@ -1,4 +1,4 @@
-<section class="usa-hero" aria-label="Introduction">
+<section class="usa-hero" id="mutual-aid-search" aria-label="Introduction">
   <img fetchpriority="high" src="{{ '/assets/img/hero.webp' | url }}" alt="" width="0" height="0"
     style="display: none !important;" />
   <div class="grid-container">
@@ -18,15 +18,15 @@
               State or Territory
             </label>
             <div class="grid-row grid-gap-2">
-              <span class="desktop:grid-col-7 mobile:grid-col-12 margin-bottom-2">
-                <select class="usa-select" id="state" name="state">
+              <span class="tablet:grid-col-8 mobile:grid-col-12 margin-bottom-2">
+                <select class="usa-select" id="state" name="state" required>
                   <option value>- Select -</option>
                   {% for item in csvData.stantecMABD %}
                   <option value="{{ item.Abbr | slug }}">{{ item.Abbr }} - {{ item.State }}</option>
                   {% endfor %}
                 </select>
               </span>
-              <span class="desktop:grid-col-5 mobile:grid-col-12">
+              <span class="tablet:grid-col-4 mobile:grid-col-12 desktop:text-right">
                 <input class="usa-button" type="submit" value="View aid options" />
               </span>
             </div>

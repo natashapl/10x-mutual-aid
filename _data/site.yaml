@@ -50,8 +50,6 @@ ga:
 
 # Site Navigation
 primary_navigation:
-  - name: Find assistance
-    url: /posts/find-assistance/
   - name: Training & resources
     url: /posts/training/
   - name: FAQs
