@@ -28,14 +28,31 @@ layout: layouts/base
             <div class="desktop:grid-col-9 mobile:grid-col-12">
               {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".webp" %}
               {% assign imacPrivate = item["IMAC Private"] %}
+              {% assign imacPublic = item["IMAC Public"] %}
+              {% assign imacDescription = item["IMAC Description"] %}
               {% assign stateString = item.State %}
+              {% assign first_eight_imacPrivate = imacPrivate | downcase | slice: 0, 8 %}
+              {% assign first_eight_imacDescription = imacDescription | downcase | slice: 0, 8 %}
+              {% assign first_eight_imacPublic = imacPublic | downcase | slice: 0, 8 %}
 
-              {% assign first_eight = imacPrivate | downcase | slice: 0, 8 %}
-              {% if first_eight == "no known" %}
-              {% assign modifiedString = "has " | append: imacPrivate | downcase %}
+              {% if first_eight_imacPrivate == "no known" %}
+              {% assign modifiedImacPrivate = "has " | append: imacPrivate | downcase %}     
               {% else %}
-              {% assign modifiedString = imacPrivate %}
+              {% assign modifiedImacPrivate = imacPrivate | downcase %}      
               {% endif %}
+
+              {% if first_eight_imacPublic == "no known" %}
+              {% assign modifiedImacPublic = "has " | append: imacPublic | downcase %}
+              {% else %}
+              {% assign modifiedImacPublic = imacPublic | downcase %}
+              {% endif %}
+
+              {% if first_eight_imacDescription == "no known" %}
+              {% assign modifiedImacDescription = "has " | append: imacDescription | downcase %}
+              {% else %}
+              {% assign modifiedImacDescription = imacDescription | downcase %}
+              {% endif %}
+
               <section class="usa-section intro-section">
                 <div class="grid-row grid-gap">
                   <div class="image-block desktop:grid-col-3 mobile:grid-col-12">
@@ -45,8 +62,8 @@ layout: layouts/base
                     <h2 class="margin-y-0">
                       Overview of Mutual Aid Resources Available in {{ item.State }}
                     </h2>
-                    <ul class="usa-list">
-                      <li>{{ stateString }} {{ item["IMAC Description"] | downcase }}</li>
+                    <ul class="usa-list">         
+                      <li>{{ stateString }} {{ modifiedImacDescription }}</li>
                       <li>{{ stateString }} {{ item["EMAC Public/Private"] | downcase }}</li>
                     </ul>
                   </div>
@@ -66,13 +83,13 @@ layout: layouts/base
                   <div id="public-personnel-section">
                     <h4>IMAC Public</h4>
                     <ul class="usa-list">
-                      <li>{{ stateString }} {{ item["IMAC Public"] | downcase }}</li>
+                      <li>{{ stateString }} {{ modifiedImacPublic }}</li>
                     </ul>
                   </div>
                   <div id="private-companies-section">
                     <h4>IMAC Private</h4>
                     <ul class="usa-list">
-                      <li>{{ stateString }} {{ modifiedString }}</li>
+                      <li>{{ stateString }} {{ modifiedImacPrivate }}</li>
                     </ul>
                   </div>
                 </div>
