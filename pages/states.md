@@ -1,6 +1,6 @@
 ---
 layout: layouts/results
-className: "state-results-page"
+className: "state-results-page static-page"
 pagination:
   data: csvData.stantecMABD
   size: 1

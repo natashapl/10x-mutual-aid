@@ -22,6 +22,7 @@ module.exports = function (config) {
   config.addPassthroughCopy({ './theme/img': 'assets/img' });
   config.addPassthroughCopy({ './favicon': '/favicon' });
   config.addPassthroughCopy({ './favicon/favicon.ico': '/myfavicon.ico' });
+  config.addPassthroughCopy({ './pdf': 'assets/pdf' });
 
   // Add plugins
   config.addPlugin(pluginRss);

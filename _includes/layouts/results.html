@@ -27,13 +27,102 @@ layout: layouts/base
             {% include "./filterpanel.html" %}
             <div class="desktop:grid-col-9 mobile:grid-col-12">
               {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".webp" %}
+              {% assign stateString = item.State %}
+              {% assign imacDescription = item["IMAC Description"] %}
+              {% assign emacEGC = item["EMA+E:GC"] %}
+              {% assign emacPublicPrivate = item["EMAC Public/Private"] %}
+              {% assign emacPublicPrivateState = emacPublicPrivate | slice: 0, 5 %}
+              {% assign emacPublicPrivateTerritory = emacPublicPrivate | slice: 0, 9 %}
+              {% assign emacPublicCommon = emacPublicPrivate | slice: 0, 12 %}
+              {% assign emacPublicDistrict = emacPublicPrivate | slice: 0, 8 %}
+              {% assign imacDescriptionState = imacDescription | slice: 0, 5 %}
               {% assign imacPrivate = item["IMAC Private"] %}
               {% assign imacPublic = item["IMAC Public"] %}
-              {% assign imacDescription = item["IMAC Description"] %}
-              {% assign stateString = item.State %}
+              {% assign imacPublicVariable = item["Variable-IMAC-Public"] %}
+              {% assign imacPrivateVariable = item["Variable_IMAC_Private"] %}
+
               {% assign first_eight_imacPrivate = imacPrivate | downcase | slice: 0, 8 %}
               {% assign first_eight_imacDescription = imacDescription | downcase | slice: 0, 8 %}
               {% assign first_eight_imacPublic = imacPublic | downcase | slice: 0, 8 %}
+
+              {% capture noKnownImacDescription %}
+                <p><span class="capitalize">{{ stateString }}</span> has {{ imacDescription | downcase }}</p>
+              {% endcapture %}
+
+              {% capture modifyImacDescription %}
+              <p>Your state/territory <strong>does not participate in EMAC</strong> and may not be able to request resources and personnel from other states during emergencies and disasters.</p>    
+              {% endcapture %}
+
+              {% capture emacStandard %}
+              <p>Your state or territory has <strong>Standard EMAC</strong> which covers:</p>
+              <ul>
+                <li>sharing of resources and personnel from other EMAC states to perform building department functions after emergencies and disasters</li>
+                <li>benefits and protections for out-of-state public-sector personnel, but not for volunteer or private sector personnel</li>
+                <li>federal reimbursement for assistance provided by other states</li>
+              </ul>     
+              {% endcapture %}
+
+              {% capture emacEhanced %}
+              <h4>Enhanced EMAC</h4>
+              <p>Your state or territory has <strong>Enhanced EMAC</strong> which covers:</p>
+              <ul>
+                <li>sharing of resources and personnel from other EMAC states to perform building department functions after emergencies and disasters</li>
+                <li>the mobilization and deployment of some volunteer or private sector personnel to carry out building department functions</li>
+                <li>benefits and protections for out-of-state public-sector personnel, as well as some volunteer and private sector personnel</li>
+                <li>federal reimbursement for assistance provided by other states and by volunteer or private sector entities</li>
+              </ul>     
+              {% endcapture %}
+
+              {% capture emacNonPartipant %}
+              <p>Your state/territory <strong>does not participate in EMAC</strong> and may not be able to request resources and personnel from other states during emergencies and disasters.</p>    
+              {% endcapture %}
+
+              {% capture imacPublicOptOut %}
+              <h4>Opt-Out IMAC Program</h4>
+              <p>Your state/territory has a <strong>statewide opt-out IMAC program</strong>. This means:</p>
+              <ul>
+                <li>All local jurisdictions within the state or territory are automatically enrolled in the IMAC agreement by default and must actively choose to opt out of the agreement if they do not wish to participate.</li>
+                <li>Participating jurisdictions, such as cities and counties, can share resources and personnel to perform building department functions following disasters and emergencies.</li>
+              </ul>     
+              {% endcapture %}
+
+              {% capture imacPublicOptIn %}
+              <h4>Opt-In IMAC Program</h4>
+              <p>Your state/territory has a <strong>statewide opt-in IMAC program</strong>. This means:</p>
+              <ul>
+                <li>Local jurisdictions are not automatically enrolled and must actively choose to participate in the IMAC agreement.</li>
+                <li>Participating jurisdictions, such as cities and counties, can share resources and personnel to perform building department functions following disasters and emergencies.</li>
+              </ul>     
+              {% endcapture %}
+
+              {% capture imacPublicIndividual %}
+              <h4>Individual Compacts</h4>
+              <p>Your state/territory does not have a statewide IMAC program and instead utilizes <strong>individual compacts between local jurisdictions</strong>. This means:</p>
+              <ul>
+                <li>Jurisdictions, such as cities and counties, with individual agreements in place can share resources and personnel to perform building department functions following disasters and emergencies.</li>
+              </ul>     
+              {% endcapture %}
+
+              {% capture noImac %}
+              <h4>No Public IMAC</h4>
+              <ul>
+                <li>Your state/territory has <strong>no known significant IMAC program</strong> between public entities.</li>
+              </ul>
+              {% endcapture %}
+
+              {% capture imacIsPrivate %}
+              <h4>Private IMAC May Be Available</h4>
+              <ul>
+                <li>Your state may also allow jurisdictions to accept services and equipment from <strong>private and volunteer entities</strong> to carry out building department functions after disasters or emergencies. For more information, please review your state’s <a href="{{ '/assets/pdf/fema_mabd-region-8-fact-sheet_2023.pdf' | url }}" target="_blank">mutual aid fact sheet.</a></li>
+              </ul>
+              {% endcapture %}
+
+              {% capture imacNotPrivate %}
+              <h4>Private IMAC May be Unavailable</h4>
+              <ul>
+                <li>For your state, secondresponders.gov is <strong>unaware of any significant policies</strong> related to the deployment of private or volunteer entities to carry out building department functions after disasters or emergencies.</li>
+              </ul>
+              {% endcapture %}
 
               {% if first_eight_imacPrivate == "no known" %}
               {% assign modifiedImacPrivate = "has " | append: imacPrivate | downcase %}     
@@ -48,9 +137,59 @@ layout: layouts/base
               {% endif %}
 
               {% if first_eight_imacDescription == "no known" %}
-              {% assign modifiedImacDescription = "has " | append: imacDescription | downcase %}
+              {% assign modifiedImacDescription = noKnownImacDescription %}
               {% else %}
-              {% assign modifiedImacDescription = imacDescription | downcase %}
+              {% assign modifiedImacDescription = imacDescription %}
+              {% endif %}
+
+              {% if imacDescriptionState == "State" %}
+                {% assign modifiedImacDescription = modifiedImacDescription | replace_first: 'State', stateString %}
+              {% endif %}
+
+              {% if emacPublicPrivateState == "State" %}
+                {% assign modifiedEmacPublicPrivate = emacPublicPrivate | replace_first: 'State', stateString %}
+              {% endif %}
+
+              {% if emacPublicPrivateTerritory == "Territory" %}
+              {% assign modifiedEmacPublicPrivate = emacPublicPrivate | replace_first: 'Territory', stateString %}
+              {% endif %}
+
+              {% if emacPublicCommon == "Commonwealth" %}
+                {% assign modifiedEmacPublicPrivate = emacPublicPrivate | replace_first: 'Commonwealth', stateString %}
+              {% endif %}
+
+              {% if emacPublicDistrict == "District" %}
+                {% assign modifiedEmacPublicPrivate = emacPublicPrivate | replace_first: 'District', stateString %}
+              {% endif %}
+
+              {% if emacEGC == "Standard EMAC" %}
+              {% assign emacEGCText = emacStandard %}
+              {% elsif emacEGC == "Expanded EMAC" %}
+              {% assign emacEGCText = emacEhanced %}
+              {% elsif emacEGC == "Not Participtaing in EMAC" %}
+              {% assign emacEGCText = emacNonPartipant %}
+              {% else %}
+              {% assign emacEGCText = emacNonPartipant %}
+              {% endif %}
+
+              {% if imacPublicVariable == "opt-out" %}
+              {% assign imacPublicText = imacPublicOptOut %}
+              {% elsif imacPublicVariable == "opt-in" %}
+              {% assign imacPublicText = imacPublicOptIn %}
+              {% elsif imacPublicVariable == "individual" %}
+              {% assign imacPublicText = imacPublicIndividual %}
+              {% elsif imacPublicVariable == "none" %}
+              {% assign imacPublicText = noImac %}
+              {% else %}
+              {% assign imacPublicText = noImac %}
+              {% endif %}
+
+              {% if imacPrivateVariable == "Yes" %}
+              {% assign imacPrivateText = imacIsPrivate %}
+              {% elsif imacPrivateVariable == "No" %}
+              {% assign imacPrivateText = imacNotPrivate %}
+              {% else %}
+              {% assign imacPrivateText = imacNotPrivate %}
               {% endif %}
 
               <section class="usa-section intro-section">
@@ -63,13 +202,13 @@ layout: layouts/base
                       Overview of Mutual Aid Resources Available in {{ item.State }}
                     </h2>
                     <ul class="usa-list">         
-                      <li>{{ stateString }} {{ modifiedImacDescription }}</li>
-                      <li>{{ stateString }} {{ item["EMAC Public/Private"] | downcase }}</li>
+                      <li>{{ modifiedImacDescription }}</li>
+                      <li>{{ modifiedEmacPublicPrivate }}</li>
                     </ul>
                   </div>
                 </div>
               </section>
-              <section id="state-mutual-aid-section" class="usa-section">
+              <section id="state-mutual-aid-section" class="usa-section state-mutual-aid">
                 <h2 class="margin-y-0 {{first_eight == 'No known'}}">
                   State Mutual Aid Resources
                 </h2>
@@ -81,16 +220,10 @@ layout: layouts/base
                     <p>No support type has been selected.</p>
                   </div>
                   <div id="public-personnel-section">
-                    <h4>IMAC Public</h4>
-                    <ul class="usa-list">
-                      <li>{{ stateString }} {{ modifiedImacPublic }}</li>
-                    </ul>
+                    {{ imacPublicText }}
                   </div>
                   <div id="private-companies-section">
-                    <h4>IMAC Private</h4>
-                    <ul class="usa-list">
-                      <li>{{ stateString }} {{ modifiedImacPrivate }}</li>
-                    </ul>
+                    {{ imacPrivateText }}
                   </div>
                 </div>
               </section>
@@ -171,16 +304,16 @@ layout: layouts/base
                   <table class="usa-table usa-table--striped">
                     <tbody>
                       <tr>
-                        <th scope="row">Standard EMAC</th>
+                        <th scope="row">{{ emacEGC }}</th>
                         <td>
-                          {{ item["EMAC Description"] }}
+                          {{ emacEGCText }}     
                         </td>
                       </tr>
                     </tbody>
                   </table>
                   <h4>EMAC Public/Private Details</h4>
-                  <ul class="usa-list">
-                    <li>{{ stateString }} {{ item["EMAC Public/Private"] | downcase }}</li>
+                  <ul class="usa-list">         
+                    <li>{{ modifiedEmacPublicPrivate }}</li>
                   </ul>
                 </div>
               </section>

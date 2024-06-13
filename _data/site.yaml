@@ -54,8 +54,8 @@ primary_navigation:
     url: /posts/training/
   - name: FAQs
     url: /posts/faq/
-  - name: Contacts
-    url: /posts/contacts/
+  - name: Contact
+    url: /posts/contact/
 
     # Add  choldren if adding a sub menu
     # children:

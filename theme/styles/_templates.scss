@@ -21,6 +21,10 @@ img {
   height: auto;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 iframe:focus, 
 [href]:focus, 
 [tabindex]:focus, 
@@ -267,23 +271,14 @@ iframe:focus,
 }
 
 .state-results-page {
-  .usa-prose {
-    > h1 {
-      font-size: size('body', 10);
-      font-weight: 600;
-      color: color('blue-60v');
-      margin-bottom: units(4);
-      
-      @include at-media(desktop) {
-        font-size: size('body', 12);
-      }
-    }
+
+  h1, h2, h3 {
+    font-weight: 600;
   }
 
   h2 {
     font-size: font-size('body', 9);
     color: color('blue-60v');
-    font-weight: 600;
   }
 
   h3 {
@@ -414,6 +409,47 @@ iframe:focus,
   }
 }
 
+.static-page {
+  .usa-prose {
+    > h1 {
+      font-size: size('body', 10);
+      font-weight: 600;
+      color: color('blue-60v');
+      margin-bottom: units(4);
+      
+      @include at-media(desktop) {
+        font-size: size('body', 12);
+      }
+    }
+  }
+}
+
+.contact-page {
+  h3 {
+    font-size: size('body', 8);
+  }
+
+  h4 {
+    font-size: size('body', 7);
+  }
+  
+  .contentRow {
+    border-bottom: 1px solid #cfe2f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+}
+
+.usa-list {
+  
+  li {
+    max-width: none;
+  }
+}
+
 .usa-footer {
   background: color('gray-cool-70');
   color: white;
@@ -430,6 +466,12 @@ iframe:focus,
         color: white;
       }
     }
+  }
+
+  .usa-link,
+  .usa-link:visited,
+  .usa-link:active {
+    color: white;
   }
 
   .last-column {
