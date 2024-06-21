@@ -2,13 +2,13 @@
 layout: layouts/default
 ---
 
-<div class="usa-layout-docs usa-section">
+<div class="usa-section {{ className }}">
   <div class="grid-container">
     <div class="grid-row grid-gap">
-      <div class="usa-layout-docs__main desktop:grid-col-9 usa-prose">
+      <main class="grid-col-12 usa-prose" id="main-content">
         <h1 class="title">{{title}}</h1>
         {{ content }}
-      </div>
+      </main>
     </div>
   </div>
 </div>
