@@ -22,7 +22,7 @@ layout: layouts/base
             </div>
           </div>
         </div>
-        <div class="contentRow margin-top-4">
+        <div class="contentRow margin-top-1">
           <div class="grid-row grid-gap">
 
             <div class="grid-col-12">
@@ -160,7 +160,7 @@ layout: layouts/base
               {% endif %}
 
               <section class="usa-section intro-section">
-                <div class="grid-row grid-gap padding-bottom-1">
+                <div class="grid-row grid-gap padding-bottom-3">
                   <div class="image-block tablet:grid-col-3 mobile:grid-col-12">
                     <img src="{{ imagePath | url }}" role="img" alt="" aria-hidden="true" width="154" height="154" />
                   </div>
@@ -228,7 +228,7 @@ layout: layouts/base
                     building inspections and code enforcement in the aftermath of a disaster.</p>
                   {% endif %}
 
-                  {% if entry.orgName == "Association of State Flood Plain Managers" %}
+                  {% if entry.orgName contains "Association of State Flood Plain Managers" %}
                   <p>The Association of State Floodplain Managers (ASFPM) is an organization of professionals involved
                     in floodplain management, flood hazard mitigation, National Flood Insurance Program, and flood
                     preparedness, warning and recovery. The ASFPM can provide communities with expert assistance in
