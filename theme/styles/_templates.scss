@@ -67,6 +67,12 @@ iframe:focus,
   }
 }
 
+.usa-list { 
+  li {
+    max-width: none;
+  }
+}
+
 .usa-logo {
   a {
     color: white;
@@ -285,12 +291,12 @@ iframe:focus,
   }
 
   h2 {
-    font-size: font-size('body', 9);
+    font-size: size('body', 10);
     color: color('blue-60v');
   }
 
   h3 {
-    font-size: font-size('body', 7);
+    font-size: font-size('body', 8);
   }
 
   h4 {
@@ -325,31 +331,11 @@ iframe:focus,
   }
 
   .usa-list {
-    margin-top: units(1);
-    margin-bottom: units(3);
+    margin: units(1) units(3) units(2);
 
     li {
       margin-bottom: units(1.5);
       max-width: 100%;
-    }
-  }
-
-  .intro-section {
-    h2 {
-      color: black;
-    }
-
-    .image-block {
-      text-align: center;
-    }
-
-    .usa-list {
-      margin-top: 0;
-  
-      li {
-        font-size: font-size('body', 3);
-        margin-bottom: units('2px');
-      }
     }
   }
 
@@ -364,8 +350,18 @@ iframe:focus,
     }
   }
 
+  .jump-to-section {
+    .usa-list {
+      margin: 0 units(3) units(5) 0;
+  
+      li {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   section {
-    border-bottom: units(2px) solid color('blue-10v');
+    border-bottom: units(2px) solid color('gray-30');
   }
 
   .usa-section {
@@ -424,30 +420,76 @@ iframe:focus,
     }
   }
 
-  .understand-mutual-aid {
-    .usa-section {
-      padding-top: units(2);
-    }
-  
+  .information-section {
+    padding-bottom: units(2);
+
     h3 {
-      margin-top: 0;
-      padding: units(2);
       font-weight: normal;
+      margin-top: 0;
+      padding: units(1.5) units(3);
     }
+
+   p {
+      padding: 0 units(3);
+    }
+
+    .image-block {
+      text-align: center;
+
+      @include at-media(tablet) {
+        text-align: left;
+      }  
+    }
+
+    img {
+      width: 200px;
+      height: auto;
+
+      @include at-media(tablet) {
+        width: 88px;    
+      }  
+    }
+  }
+
+  .state-mutual-aid {
+    border: units(2px) solid color('orange-10');
+
+    img {
+      filter: brightness(0) saturate(100%) invert(31%) sepia(98%) saturate(2693%) hue-rotate(23deg) brightness(95%) contrast(102%);
+    }
+  }
+
+  .federal-mutual-aid {
+    border: units(2px) solid color('blue-cool-5v');
+  }
+
+  .mutual-aid-contacts {
+    .contact-information {
+      border: units(2px) solid color('gray-50');
+      margin-bottom: units(4);
+
+      h3 {
+        background: color('gray-50');
+        color: white;
+        margin-top: 0;
+      }
   
-    .usa-list {
-      li {
-        margin-bottom: units(2);
+      h4 {
+        font-weight: 600;
+        padding: units(1) units(3) 0;
+      }
+
+      .usa-list {
+        margin: 0 units(4);
+      }
+
+      h3,
+      .grid-row {
+        padding: units(1) units(3);
       }
     }
   }
 
-  .mutual-aid-contacts {
-    h4 {
-      margin-bottom: units(2);
-    }
-  }
-  
   .top-button-wrapper {
     .usa-button {
       font-weight: normal;
@@ -456,7 +498,6 @@ iframe:focus,
       @include at-media(desktop) {
         margin-top: 0;
         padding: units(1.5) units(2);
-
       }    
     }
   }
@@ -474,6 +515,7 @@ iframe:focus,
       font-size: size('body', 10);
       font-weight: 600;
       color: color('blue-60v');
+      margin-top: units(1);
       margin-bottom: units(4);
       
       @include at-media(desktop) {
@@ -500,13 +542,6 @@ iframe:focus,
     }
   }
 
-}
-
-.usa-list {
-  
-  li {
-    max-width: none;
-  }
 }
 
 .usa-footer {
