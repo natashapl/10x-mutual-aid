@@ -7,10 +7,35 @@ const markdownItAnchor = require('markdown-it-anchor');
 const yaml = require("js-yaml");
 const svgSprite = require("eleventy-plugin-svg-sprite");
 const { imageShortcode, imageWithClassShortcode } = require('./config');
+const htmlmin = require("html-minifier");
+const UglifyJS = require("uglify-js");
 
 module.exports = function (config) {
   // Set pathPrefix for site
   let pathPrefix = '/';
+
+    // Minify inline (not imported) JS
+    config.addFilter("jsmin", function (code) {
+      let minified = UglifyJS.minify(code);
+      if (minified.error) {
+        console.log("UglifyJS error: ", minified.error);
+        return code;
+      }
+      return minified.code;
+    });
+  
+    // Minify HTML output
+    config.addTransform("htmlmin", function (content, outputPath) {
+      if (outputPath && outputPath.indexOf(".html") > -1) {
+        let minified = htmlmin.minify(content, {
+          useShortDoctype: true,
+          removeComments: true,
+          collapseWhitespace: true
+        });
+        return minified;
+      }
+      return content;
+    });
 
   // Copy the `admin` folders to the output
   config.addPassthroughCopy('admin');

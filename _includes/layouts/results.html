@@ -2,11 +2,36 @@
 layout: layouts/base
 ---
 
-<div class="usa-section {{ className }}">
+<div class="usa-section {{ className }} padding-top-2">
   <div class="grid-container">
     <div class="grid-row grid-gap">
       <main class="grid-col-12 usa-prose" id="main-content">
-        <h1>Mutual Aid Assistance Results</h1>
+        <nav class="usa-breadcrumb" aria-label="Breadcrumbs,,">
+          <ol class="usa-breadcrumb__list">
+            <li class="usa-breadcrumb__list-item">
+              <a href="{{ '/' | url }}" class="usa-breadcrumb__link">
+                <span>Home</span>
+              </a>
+            </li>
+            <li class="usa-breadcrumb__list-item">
+              <span>Results</span>
+            </li>
+          </ol>
+        </nav>
+        {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".svg" %}
+        {% assign stateString = item.State %}
+        {% assign emacEGC = item["EMA+E:GC"] %}
+        {% assign imacPublicVariable = item["Variable-IMAC-Public"] %}
+        {% assign imacPrivateVariable = item["Variable_IMAC_Private"] %}
+
+        <h1>Mutual Aid Resources Available in {{ stateString }}</h1>
+        <div class="jump-to-section">
+          <p class="margin-bottom-0">Jump to section</p>
+          <ul class="usa-list">
+            <li><a class="usa-link" href="#understand-mutual-aid-section">Understanding mutual aid options in {{ stateString }}</a></li>
+            <li><a class="usa-link" href="#mutual-aid-contacts-section">Mutual aid contacts in {{ stateString }}</a></li>
+          </ul>
+        </div>
         <div class="usa-alert usa-alert--warning grid-container padding-x-0">
           <div class="usa-alert__body">
             <h2 class="usa-alert__heading">Disclaimer</h2>
@@ -24,14 +49,7 @@ layout: layouts/base
         </div>
         <div class="contentRow margin-top-1">
           <div class="grid-row grid-gap">
-
             <div class="grid-col-12">
-              {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".webp" %}
-              {% assign stateString = item.State %}
-              {% assign emacEGC = item["EMA+E:GC"] %}
-              {% assign imacPublicVariable = item["Variable-IMAC-Public"] %}
-              {% assign imacPrivateVariable = item["Variable_IMAC_Private"] %}
-
               {% capture emacStandard %}
               <p><span class="capitalize">{{ stateString }}</span> has <span class="text-bold">Standard EMAC</span>
                 which covers:</p>
@@ -161,40 +179,22 @@ layout: layouts/base
 
               <section class="usa-section intro-section">
                 <div class="grid-row grid-gap padding-bottom-3">
-                  <div class="image-block tablet:grid-col-3 mobile:grid-col-12">
-                    <img src="{{ imagePath | url }}" role="img" alt="" aria-hidden="true" width="154" height="154" />
-                  </div>
-                  <div class="intro-content-block tablet:grid-col-9 mobile:grid-col-12">
-                    <h2 class="margin-y-0">
-                      Mutual Aid Resources Available in {{ item.State }}
-                    </h2>
-                    <p class="margin-bottom-0">Jump to section</p>
-                    <ul class="usa-list">
-                      <li><a class="usa-link" href="#understand-mutual-aid-section">Understanding mutual aid options in {{ stateString }}
-                      </li>
-                      <li><a class="usa-link" href="#mutual-aid-contacts-section">Mutual aid contacts in {{ stateString }}</a></li>
-                    </ul>
-                  </div>
+
                 </div>
               </section>
               <section id="understand-mutual-aid-section" class="usa-section understand-mutual-aid">
                 <h2 class="margin-top-0 margin-bottom-3">
                   Understanding mutual aid options in {{ stateString }}
                 </h2>
-                <div id="federal-mutual-aid-section" class="federal-mutual-aid">
-                  <h3 class="bg-accent-cool-lighter">
-                    <span class="text-bold">Federal</span> - Emergency Mutual Aid Compact (EMAC)
-                  </h3>
-                  <p>EMAC is an agreement among U.S. states and territories that allows them to share resources and
-                    personnel during disasters or emergencies. It helps states manage large-scale emergencies that
-                    exceed their individual capacities.</p>
-
-                  {{ emacEGCText }}
-                </div>
-
-                <div id="state-mutual-aid-section" class="state-mutual-aid margin-top-5">
-                  <h3 class="bg-accent-warm-lighter">
-                    <span class="text-bold">State</span> - Intrastate Mutual Aid Compact (IMAC)
+                <div id="state-mutual-aid-section" class="state-mutual-aid information-section margin-top-4 margin-bottom-5">
+                  <h3 class="bg-accent-warm-lighter grid-row">
+                    <span class="image-block tablet:grid-col-2 mobile:grid-col-12 display-inline-block">
+                      <img class="text-middle" src="{{ imagePath | url }}" role="img" alt="" aria-hidden="true" width="88" height="88" />
+                    </span>
+                    <span class="intro-content-block tablet:grid-col-10 mobile:grid-col-12 padding-top-105">
+                      <span class="text-bold">In-state mutual aid</span> <br>
+                      Intrastate Mutual Aid Compact (IMAC)
+                    </span>
                   </h3>
                   <p>IMAC is an agreement that allows local governments, such as cities and counties, to share resources
                     and personnel during emergencies. IMAC helps local jurisdictions coordinate and support each other
@@ -202,15 +202,31 @@ layout: layouts/base
 
                   {{ imacPublicText }}
                 </div>
+                <div id="federal-mutual-aid-section" class="federal-mutual-aid information-section">
+                  <h3 class="bg-accent-cool-lighter grid-row">
+                    <span class="image-block tablet:grid-col-2 mobile:grid-col-12 display-inline-block">
+                      <img class="text-middle" src="{{ '/assets/img/states/usa.svg'| url }}" role="img" alt="" aria-hidden="true" width="88" height="88" />
+                    </span>
+                    <span class="intro-content-block tablet:grid-col-10 mobile:grid-col-12 padding-top-105">
+                      <span class="text-bold">Federal mutual aid</span> <br>
+                      Emergency Mutual Aid Compact (EMAC)
+                    </span>
+                  </h3>
+                  <p>EMAC is an agreement among U.S. states and territories that allows them to share resources and
+                    personnel during disasters or emergencies. It helps states manage large-scale emergencies that
+                    exceed their individual capacities.</p>
+
+                  {{ emacEGCText }}
+                </div>
                 {{ backToTop }}
               </section>
 
               <section id="mutual-aid-contacts-section" class="usa-section mutual-aid-contacts">
                 <h2 class="margin-top-0 margin-bottom-3">
-                  Mutual aid contacts
+                  Mutual aid contacts in {{ stateString }}
                 </h2>
 
-                <p>The following organizations are familiar with the processes for mutual aid in Florida and can help
+                <p class="margin-bottom-4">The following organizations are familiar with the processes for mutual aid in Florida and can help
                   connect you with personnel and resources when you need them most. You can reach out to these
                   organizations for guidance and assistance in navigating the EMAC and IMAC systems to support your
                   building department during emergencies and disasters.</p>
@@ -223,31 +239,47 @@ layout: layouts/base
                     {{ entry.orgName }}
                   </h3>
                   {% if entry.orgName == "International Code Council Regional Office" %}
-                  <p>The International Code Council (ICC) is a nonprofit association that is focused on building safety
-                    worldwide. The ICC can provide skilled volunteers to assist local building department officials with
-                    building inspections and code enforcement in the aftermath of a disaster.</p>
+                  <h4>Assistance provided:</h4>
+                  <ul class="usa-list">
+                    <li>Permitting and building code assistance</li>
+                  </ul>
+                  <h4>Group details:</h4>
+                  <ul class="usa-list">
+                    <li>The International Code Council (ICC) is a nonprofit association that is focused on building safety
+                      worldwide. The ICC can provide skilled volunteers to assist local building department officials with
+                      building inspections and code enforcement in the aftermath of a disaster.</li>
+                  </ul>
                   {% endif %}
 
                   {% if entry.orgName contains "Association of State Flood Plain Managers" %}
-                  <p>The Association of State Floodplain Managers (ASFPM) is an organization of professionals involved
-                    in floodplain management, flood hazard mitigation, National Flood Insurance Program, and flood
-                    preparedness, warning and recovery. The ASFPM can provide communities with expert assistance in
-                    handling floodplain management responsibilities, conducting damage assessments, and offering
-                    guidance on code-compliant reconstruction after a natural disaster.</p>
+                  <h4>Assistance provided:</h4>
+                  <ul class="usa-list">
+                    <li>Flood response, recovery, and mitigation</li>
+                  </ul>
+                  <h4>Group details:</h4>
+                  <ul class="usa-list">
+                    <li>The Association of State Floodplain Managers (ASFPM) is an organization of professionals involved
+                      in floodplain management, flood hazard mitigation, National Flood Insurance Program, and flood
+                      preparedness, warning and recovery. The ASFPM can provide communities with expert assistance in
+                      handling floodplain management responsibilities, conducting damage assessments, and offering
+                      guidance on code-compliant reconstruction after a natural disaster.</li>
+                  </ul>
                   {% endif %}
 
                   <h4>Contact Information</h4>
-                  <div class="grid-row grid-gap-2 display-flex">
+                  <div class="grid-row grid-gap-4 display-flex">
                     {% for contact in entry.contacts %}
                     <div class="mobile:grid-col-12 tablet:grid-col-6 addressBlock margin-bottom-3">
-                      <div class="bg-primary-lighter padding-y-1 padding-x-3 height-full radius-md">
+                      <div class="bg-gray-10 padding-y-1 padding-x-3 height-full radius-md">
                         {% if contact['First Name'] or contact['Title / Org'] != blank %}
                         <p>
                           {% if contact['First Name'] != blank %}
                           <span class="nameText text-bold">{{ contact['First Name'] }} {{ contact['Last Name'] }}</span><br>
                           {% endif %}
   
-                          {% if contact['Title / Org'] != blank %}
+                          {% if contact['First Name'] == blank and contact['Title / Org'] != blank %}
+                          <span class="nameText text-bold">{{ contact['Title / Org'] }}</span>
+                          {% else %}
                           {{ contact['Title / Org'] }}
                           {% endif %}
                         </p>

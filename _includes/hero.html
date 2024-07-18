@@ -1,6 +1,9 @@
 <section class="usa-hero" id="mutual-aid-search" aria-label="Introduction">
-  <img fetchpriority="high" src="{{ '/assets/img/hero.webp' | url }}" alt="" width="0" height="0"
-    style="display: none !important;" />
+  <picture>
+    <source media="(min-width: 40em)" srcset="{{ assetPaths['hero.webp'] }}"/>
+    <img src="{{ assetPaths['hero.webp'] }}" alt="" width="0" height="0"
+      style="display: none !important;" fetchpriority="high"/>
+  </picture>
   <div class="grid-container">
     <div class="usa-hero__callout">
       <h1 class="usa-hero__heading margin-bottom-4">
