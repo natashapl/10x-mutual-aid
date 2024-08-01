@@ -50,8 +50,8 @@ ga:
 
 # Site Navigation
 primary_navigation:
-  - name: Training & resources
-    url: /posts/training/
+  - name: Resources
+    url: /posts/resources/
   - name: FAQs
     url: /posts/faq/
   - name: Contact
