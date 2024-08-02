@@ -581,10 +581,17 @@ iframe:focus,
 .resources-page {
   h3 {
     font-family: font-family('serif');
+    margin-top: units(4);
+    margin-bottom: 0;
 
     .usa-link {
       text-decoration: none;
     }
+  }
+
+  p {
+    margin-top: units(1);
+    margin-bottom: units(4);
   }
 }
 
