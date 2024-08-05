@@ -102,8 +102,22 @@ iframe:focus,
         text-decoration: underline;
         color: white;
       }
+
+      &.usa-current {
+        &:hover {
+          text-decoration: none;
+        }        
+      }
     }
   }
+}
+
+.usa-header--basic .usa-nav__primary-item>.usa-current::after, 
+.usa-header--basic .usa-nav__link:hover::after {
+  background-color: white;
+  left: 0.25rem;
+  right: 0.25rem;
+  width: 90%;
 }
 
 .usa-hero {
@@ -340,7 +354,6 @@ iframe:focus,
   }
 
   .disclaimer-button {
-    background: color('blue-warm-80v');
     font-weight: 700;
     line-height: line-height('body', 2);
     margin-top: units(2);
@@ -368,6 +381,10 @@ iframe:focus,
     padding-top: units(4);
     padding-bottom: 0;
     margin-top: 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
 
     &:last-child {
       border: none;
@@ -452,7 +469,16 @@ iframe:focus,
   }
 
   .state-mutual-aid {
-    border: units(2px) solid color('orange-10');
+    border: units(1px) solid color('orange-50v');
+
+    h3 {
+      border-bottom: units(1px) solid color('orange-50v');
+    }
+
+    strong,
+    .text-bold {
+      color: color('orange-50v');
+    }
 
     img {
       filter: brightness(0) saturate(100%) invert(31%) sepia(98%) saturate(2693%) hue-rotate(23deg) brightness(95%) contrast(102%);
@@ -460,7 +486,16 @@ iframe:focus,
   }
 
   .federal-mutual-aid {
-    border: units(2px) solid color('blue-cool-5v');
+    border: units(1px) solid color('blue-warm-60v');
+
+    h3 {
+      border-bottom: units(1px) solid color('blue-warm-60v');
+    }
+
+    strong,
+    .text-bold {
+      color: color('blue-cool-60v');
+    }
   }
 
   .mutual-aid-contacts {
@@ -510,17 +545,16 @@ iframe:focus,
 }
 
 .static-page {
-  .usa-prose {
-    > h1 {
-      font-size: size('body', 10);
-      font-weight: 600;
-      color: color('blue-60v');
-      margin-top: units(1);
-      margin-bottom: units(4);
-      
-      @include at-media(desktop) {
-        font-size: size('body', 12);
-      }
+  h1 {
+    font-size: size('body', 10);
+    font-weight: 600;
+    font-family: font-family('serif');
+    color: color('blue-60v');
+    margin-top: units(1);
+    margin-bottom: units(4);
+    
+    @include at-media(desktop) {
+      font-size: size('body', 12);
     }
   }
 }
@@ -542,6 +576,32 @@ iframe:focus,
     }
   }
 
+}
+
+.resources-page {
+  h3 {
+    font-family: font-family('serif');
+    margin-top: units(4);
+    margin-bottom: 0;
+
+    .usa-link {
+      text-decoration: none;
+    }
+  }
+
+  p {
+    margin-top: units(1);
+    margin-bottom: units(4);
+  }
+}
+
+.faq-page {
+  .usa-in-page-nav {
+    order: unset;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 2rem;
+  }
 }
 
 .usa-footer {

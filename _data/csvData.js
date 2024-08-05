@@ -16,6 +16,13 @@ module.exports = async function() {
     skip_empty_lines: true
   });
 
+  // Read and parse the third CSV file
+  const csv3 = fs.readFileSync('./_data/State_EMAs_Sheet1.csv', 'utf8');
+  const data3 = parse(csv3, {
+    columns: true,
+    skip_empty_lines: true
+  });
+
   // Organize contacts by organization and states
   let contactsByState = [];
 
@@ -32,9 +39,19 @@ module.exports = async function() {
     });
   });
 
+  // Organize EMA data by state from data3
+  let stateEMAs = {};
+  data3.forEach(ema => {
+    const state = ema['State'].trim();
+    if (!stateEMAs[state]) {
+      stateEMAs[state] = [];
+    }
+    stateEMAs[state].push(ema);
+  });
 
   return {
     stantecMABD: data1,
-    contactsByState
+    contactsByState,
+    stateEMAs
   };
 };

@@ -2,10 +2,11 @@
 layout: layouts/default
 ---
 
-<div class="usa-section {{ className }}">
+<div class="usa-section {{ className }} padding-top-2">
   <div class="grid-container">
     <div class="grid-row grid-gap">
       <main class="grid-col-12 usa-prose" id="main-content">
+        {% include "breadcrumb.html" %}
         <h1 class="title">Contact</h1>
         <div class="usa-alert usa-alert--error" role="alert">
           <div class="usa-alert__body">

@@ -1,13 +1,11 @@
 ---
-title: FAQ
+title: Frequently Asked Questions (FAQs)
+short-title: FAQs
 className: "faq-page static-page"
-description: FAQ
-layout: layouts/post
-excerpt: FAQ
+description: FAQs
+layout: layouts/faq-page
+excerpt: FAQs
 
 tags:
   - posts
 ---
-
-Updated content is coming soon.
-

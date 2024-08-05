@@ -1,0 +1,113 @@
+---
+layout: layouts/default
+---
+
+<div class="usa-section {{ className }} padding-top-2">
+  <div class="grid-container">
+    {% include "breadcrumb.html" %}
+    <h1 class="title">{{title}}</h1>
+    <div class="usa-in-page-nav-container">
+      <aside
+        class="usa-in-page-nav"
+        data-heading-elements="h3"
+        data-title-text="On this page"
+        data-title-heading-level="h3"
+        data-scroll-offset="0"
+        data-root-margin="0px 0px 0px 0px"
+        data-threshold="1"
+      ></aside>
+      <main class="grid-col-12 main-content usa-prose" id="main-content">
+        <div class="contentRow margin-top-1">
+          <p class="question introText">This page offers answers to frequently asked questions about mutual aid assistance for local building department officials.</p>
+          <div class="question">
+            <h3>What building department functions can mutual aid help with after disasters?</h3>
+            <p>Mutual aid can be utilized to assist with post-disaster inspections, permitting and enforcement tasks.</p>
+          </div>
+          <div class="question">
+            <h3>Who are these people coming to help?</h3>
+            <p>Mutual aid personnel can be classified in two categories: Public-Sector Personnel, also referred to as state assets and can include local, state, and federal officials; and Private-Sector Personnel. The ability to use mutual aid for private sector resources varies from state to state.</p>
+            <p>The following public and private-sector resources are capable of assisting communities after disaster:</p>
+            <ul>
+              <li>Building Code Officials</li>
+              <li>Building Safety & Code Inspectors</li>
+              <li>Floodplain Administrators</li>
+              <li>State NFIP Coordinators</li>
+              <li>Engineers & Architects</li>
+              <li>Technicians & Specialists</li>
+            </ul>
+          </div>
+          <div class="question">
+            <h3>What is DRRA 1206 and how can it help me?</h3>
+            <p>The Disaster Recovery Reform Act of 2018, Section 1206 (DRRA-1206) authorizes FEMA Public Assistance grant funding to support recovery staffing needs of local building code and floodplain management departments up to 180 days following the date of the major disaster declaration. DRRA-1206 can help reimburse communities that seek out trained and certified mutual aid responder teams that meet specific criteria.</p>
+            <p>For answers to frequently asked questions (FAQs) about DRRA-1206, refer to FEMA's 
+              <a 
+                class="usa-link usa-link--external"
+                target="_blank"
+                href="https://www.fema.gov/sites/default/files/documents/fema_drcc-section-1206-faq-volume-1.pdf">
+                FAQ Volume 1
+              </a> and 
+              <a 
+                class="usa-link usa-link--external"
+                target="_blank"
+                href="https://www.fema.gov/sites/default/files/documents/fema_drcc-section-1206-faq-volume-2.pdf">
+                Volume 2
+              </a>.
+            </p>
+          </div>
+          <div class="question">
+            <h3>Who are these people coming to help?</h3>
+            <p>Mutual aid personnel can be classified in two categories: Public-Sector Personnel, also referred to as state assets and can include local, state, and federal officials; and Private-Sector Personnel. The ability to use mutual aid for private sector resources varies from state to state.</p>
+            <p>The following public and private-sector resources are capable of assisting communities after disaster:</p>
+            <ul>
+              <li>Building Code Officials</li>
+              <li>Building Safety & Code Inspectors</li>
+              <li>Floodplain Administrators</li>
+              <li>State NFIP Coordinators</li>
+              <li>Engineers & Architects</li>
+              <li>Technicians & Specialists</li>
+            </ul>
+          </div>
+          <div class="question">
+            <h3>What is DRRA 1206 and how can it help me?</h3>
+            <p>The Disaster Recovery Reform Act of 2018, Section 1206 (DRRA-1206) authorizes FEMA Public Assistance grant funding to support recovery staffing needs of local building code and floodplain management departments up to 180 days following the date of the major disaster declaration. DRRA-1206 can help reimburse communities that seek out trained and certified mutual aid responder teams that meet specific criteria.</p>
+            <p>For answers to frequently asked questions (FAQs) about DRRA-1206, refer to FEMA's 
+              <a 
+                class="usa-link usa-link--external"
+                target="_blank"
+                href="https://www.fema.gov/sites/default/files/documents/fema_drcc-section-1206-faq-volume-1.pdf">
+                FAQ Volume 1
+              </a> and 
+              <a 
+                class="usa-link usa-link--external"
+                target="_blank"
+                href="https://www.fema.gov/sites/default/files/documents/fema_drcc-section-1206-faq-volume-2.pdf">
+                Volume 2
+              </a>.
+            </p>
+          </div>
+          {{ content }}
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Function to update aria-current based on usa-current class
+    function updateAriaCurrent() {   
+      document.querySelectorAll('.usa-in-page-nav__link').forEach(link => {
+        link.removeAttribute('aria-current');
+      });
+
+      const currentLink = document.querySelector('.usa-in-page-nav__link.usa-current');
+
+      if (currentLink) {
+        currentLink.setAttribute('aria-current', 'true');
+      }
+    }
+
+    window.addEventListener('scroll', updateAriaCurrent);
+    updateAriaCurrent();
+  });
+</script>

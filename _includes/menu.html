@@ -21,10 +21,10 @@ manage your navigation system {% endcomment %}
       <ul class="usa-nav__primary usa-accordion">
         {% for nav_item in primary_navigation %}
         {% unless nav_item.children %}
-        {% assign basedir = page.url | remove_first: '/' | split: '/' | first |
-        lstrip %} {% assign linkdir = nav_item.url | replace: "/", "" | lstrip
-        %}
-        <li class="usa-nav__primary-item">
+        {% assign basedir = page.url %} 
+        {% assign linkdir = nav_item.url %}
+
+        <li class="usa-nav__primary-item test">
           <a class="usa-nav-link{% if basedir == linkdir %} usa-current{% endif %}" href="{{ nav_item.url | url }}">
             <span>{{ nav_item.name | escape }}</span>
           </a>
