@@ -68,7 +68,8 @@ layout: layouts/base
                   volunteer entities</span> to carry out building department functions after disasters or emergencies.
                 For more information, please review your state's <a
                   href="{{ '/assets/pdf/fema_mabd-region-8-fact-sheet_2023.pdf' | url }}" target="_blank">mutual aid
-                  fact sheet.</a></li>
+                  fact sheet.</a>
+              </li>
               {% endcapture %}
 
               {% assign imacNotPrivateText = 'For your state, secondresponders.gov is <span class="text-bold">unaware of
@@ -165,15 +166,12 @@ layout: layouts/base
               {% assign imacPublicText = noImac %}
               {% endif %}
 
-              <section class="usa-section intro-section">
-                <div class="grid-row grid-gap padding-bottom-3">
-
-                </div>
-              </section>
               <section id="understand-mutual-aid-section" class="usa-section understand-mutual-aid">
                 <h2 class="margin-top-0 margin-bottom-3">
                   Step 1: Understanding mutual aid options in {{ stateString }}
                 </h2>
+                <p class="margin-bottom-4">The first major step towards using mutual aid is learning more about existing
+                  mutual aid agreements and policies specific to your state of territory.</p>
                 <div id="state-mutual-aid-section"
                   class="state-mutual-aid information-section margin-top-4 margin-bottom-5">
                   <h3 class="bg-accent-warm-lighter grid-row">
@@ -192,6 +190,9 @@ layout: layouts/base
 
                   {{ imacPublicText }}
                 </div>
+                <p class="margin-bottom-4">It is also important to learn about options for finding help from outside
+                  your state of territory.
+                </p>
                 <div id="federal-mutual-aid-section" class="federal-mutual-aid information-section">
                   <h3 class="bg-accent-cool-lighter grid-row">
                     <span class="image-block tablet:grid-col-2 mobile:grid-col-12 display-inline-block">
@@ -211,15 +212,12 @@ layout: layouts/base
                 </div>
                 {{ backToTop }}
               </section>
-
               <section id="mutual-aid-contacts-section" class="usa-section mutual-aid-contacts">
                 <h2 class="margin-top-0 margin-bottom-3">
                   Step 2: Mutual aid contacts in {{ stateString }}
                 </h2>
-
                 <p class="margin-bottom-4">The next step to rebuilding following a disaster should be to connect with
                   emergency management agencies and staff in your state, local, tribal or territorial location. </p>
-
 
                 <div class="contact-information">
                   <h3>
@@ -247,6 +245,12 @@ layout: layouts/base
                             href="{{ emas['Local EMA / EOC page'] | url}}">{{ emas['Local EMA / EOC page'] }}
                           </a>
                         </p>
+                        <p class="text-bold margin-bottom-0">How they can help: </p>
+                        <ul class="margin-top-0">
+                          <li>Local emergency management coordinators have established connections and protocols to
+                            quickly mobilize personnel and resources from neighboring jurisdictions.
+                          </li>
+                        </ul>
                         {% endif %}
                       </div>
                       {% endif %}
@@ -272,6 +276,14 @@ layout: layouts/base
                             href="{{ emas['Local EMA page'] | url }}">{{ emas['Local EMA page'] }}
                           </a>
                         </p>
+                        <p class="text-bold margin-bottom-0">How they can help: </p>
+                        <ul class="margin-top-0">
+                          <li>Many states and territories have laws and agreements in place that provide liability
+                            protections and reimbursement mechanisms for shared personnel through mutual aid.
+                            Coordinating with a state agency can help ensure rebuilding occurs safely, efficiently, and
+                            in compliance with codes and regulations.
+                          </li>
+                        </ul>
                         {% endif %}
                       </div>
                       {% endif %}
@@ -329,6 +341,15 @@ layout: layouts/base
                             href="mailto:{{ contact['E-mail'] }}">{{ alternativeEmail }}</a>
                         </p>
                         {% endif %}
+
+                        <p class="text-bold margin-bottom-0">How they can help: </p>
+                        <ul class="margin-top-0">
+                          <li>A state hazard mitigation officer can help identify funding opportunities, facilitate
+                            connections with other jurisdictions for mutual aid, provide guidance on developing
+                            effective agreements and protocols, and offer training and exercise support to improve
+                            readiness.
+                          </li>
+                        </ul>
 
                         {% endif %}
                       </div>
@@ -477,7 +498,7 @@ layout: layouts/base
             </div>
           </div>
           {{ content }}
-        </div>      
+        </div>
       </main>
     </div>
   </div>
