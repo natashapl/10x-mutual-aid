@@ -8,7 +8,8 @@ manage your navigation system {% endcomment %}
       <div class="usa-logo">
         <a href="{{ '/' | url }}">
           <div class="usa-logo" id="basic-logo">
-            <img alt="10 x Bring Mutual Aid Home" src="{{ '/assets/img/bm-logo.svg' | url }}" width="300" height="67" />
+            <img alt="10 x Bring Mutual Aid Home" src="{{ '/assets/images/bm-logo.svg' | url }}" width="300"
+              height="67" />
           </div>
         </a>
       </div>
@@ -16,12 +17,13 @@ manage your navigation system {% endcomment %}
     </div>
     <nav aria-label="Primary navigation" class="usa-nav">
       <button type="button" class="usa-nav__close">
-        <img src="{{'/assets/uswds/img/usa-icons/close.svg' | url }}" role="img" alt="Close" width="24" height="24" fetchpriority="low" />
+        <img src="{{'/assets/uswds/img/usa-icons/close.svg' | url }}" role="img" alt="Close" width="24" height="24"
+          fetchpriority="low" />
       </button>
       <ul class="usa-nav__primary usa-accordion">
         {% for nav_item in primary_navigation %}
         {% unless nav_item.children %}
-        {% assign basedir = page.url %} 
+        {% assign basedir = page.url %}
         {% assign linkdir = nav_item.url %}
 
         <li class="usa-nav__primary-item test">

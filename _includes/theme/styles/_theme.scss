@@ -1,8 +1,8 @@
 @use 'uswds-core' as * with (
   $theme-show-notifications: false,
-  $theme-font-path: '../../node_modules/@uswds/uswds/dist/fonts',
-  $theme-image-path: '../../node_modules/@uswds/uswds/dist/img',
-  $theme-hero-image: '../img/hero.webp',
+  $theme-font-path: '../../../node_modules/@uswds/uswds/dist/fonts',
+  $theme-image-path: '../../../node_modules/@uswds/uswds/dist/img',
+  $theme-hero-image: '../images/hero.webp',
   $theme-font-type-mono:   'roboto-mono',
   $theme-font-type-sans:   'source-sans-pro',
   $theme-font-type-serif:  'merriweather'
