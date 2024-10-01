@@ -1,7 +1,6 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="robots" content="noindex, nofollow" />
 
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -14,7 +13,7 @@
   {% endif %}
 
   <meta property="og:site_name" content="{{- site.title -}}">
-  
+
   {% if item %}
   <meta property="og:title" content="{{ item.State }} | {{ site.title }}">
   {% else %}
@@ -23,7 +22,7 @@
 
   <meta name="description" content="{{- description }} {{ site.description }}">
   <meta property="og:description" content="{{- description -}}">
-  <meta property="og:locale" content="en_US"/>
+  <meta property="og:locale" content="en_US" />
 
   <link rel="canonical" href="{{- site.url -}}{{- page.url | url -}}">
   <meta content="{{- site.url -}}{{- page.url | url -}}" property="og:url">
@@ -33,11 +32,14 @@
 
   <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
-  <link rel="apple-touch-icon" sizes="180x180" rel="noopener" target="_blank" href="{{ '/favicon/apple-touch-icon.png' | url }}">
-  <link rel="icon" type="image/png" sizes="32x32" rel="noopener" target="_blank" href="{{ '/favicon/favicon-32x32.png' | url }}">
-  <link rel="icon" type="image/png" sizes="16x16" rel="noopener" target="_blank" href="{{ '/favicon/favicon-16x16.png' | url }}">
+  <link rel="apple-touch-icon" sizes="180x180" rel="noopener" target="_blank"
+    href="{{ '/favicon/apple-touch-icon.png' | url }}">
+  <link rel="icon" type="image/png" sizes="32x32" rel="noopener" target="_blank"
+    href="{{ '/favicon/favicon-32x32.png' | url }}">
+  <link rel="icon" type="image/png" sizes="16x16" rel="noopener" target="_blank"
+    href="{{ '/favicon/favicon-16x16.png' | url }}">
   <link rel="icon" href="{{ '/myfavicon.ico' | url }}" type="image/x-icon" />
-  <link rel="shortcut icon" href="{{ '/myfavicon.ico' | url }}" type="image/x-icon" /> 
+  <link rel="shortcut icon" href="{{ '/myfavicon.ico' | url }}" type="image/x-icon" />
   <link rel="manifest" href="{{ '/favicon/site.webmanifest' | url }}">
   <link rel="mask-icon" href="{{ '/favicon/safari-pinned-tab.svg' | url }}" color="#3d4551">
   <meta name="msapplication-TileColor" content="#da532c">
@@ -45,22 +47,4 @@
 
   <link rel="preload" as="style" href="{{ assetPaths['index.css'] }}" />
   <link rel="stylesheet" href="{{ assetPaths['index.css'] }}" type="text/css" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
