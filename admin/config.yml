@@ -8,9 +8,9 @@ backend:
   branch: main
   use_graphql: true
 
-
 ##
 ## Uncomment when doing local development on Netlify CMS
+## Install netlify-cms ^2.10.192 and netlify-cms-proxy-server ^1.3.23
 ## Run `npx netlify-cms-proxy-server` to start working locally
 ## In another terminal, start the app with `npm start`
 ## See https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
@@ -37,29 +37,34 @@ collections:
     editor:
       preview: false
     fields:
-      - {label: 'Layout', name: 'layout', widget: 'hidden', default: 'layouts/post'}
-      - {label: 'Tags', name: 'tags', widget: 'hidden', default: ['posts']}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Author", name: "author", widget: "string"}
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "layouts/post",
+        }
+      - { label: "Tags", name: "tags", widget: "hidden", default: ["posts"] }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Author", name: "author", widget: "string" }
       - {
           label: "Publish Date",
           name: "date",
           widget: "datetime",
-          format: 'YYYY-MM-DD',
-          dateFormat: 'YYYY-MM-DD',
-          timeFormat: false
+          format: "YYYY-MM-DD",
+          dateFormat: "YYYY-MM-DD",
+          timeFormat: false,
         }
       - {
-        label: "Image",
-        name: "image",
-        widget: "image",
-        allow_multiple: false,
-        required: false
+          label: "Image",
+          name: "image",
+          widget: "image",
+          allow_multiple: false,
+          required: false,
         }
       - {
-        label: "Image Alt Text",
-        name: "image_alt_text",
-        widget: "string",
-        required: false
+          label: "Image Alt Text",
+          name: "image_alt_text",
+          widget: "string",
+          required: false,
         }
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Body", name: "body", widget: "markdown" }

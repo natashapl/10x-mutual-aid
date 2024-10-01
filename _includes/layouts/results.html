@@ -8,11 +8,11 @@ layout: layouts/base
       <main class="grid-col-12 usa-prose" id="main-content">
         {% include "breadcrumb.html" %}
 
-        {% assign imagePath = "/assets/img/states/" | append: item.Abbr | append: ".svg" %}
+        {% assign imagePath = "/assets/images/states/" | append: item.Abbr | append: ".svg" %}
         {% assign stateString = item.State %}
         {% assign emacEGC = item["EMA+E:GC"] %}
-        {% assign imacPublicVariable = item["Variable-IMAC-Public"] %}
-        {% assign imacPrivateVariable = item["Variable_IMAC_Private"] %}
+        {% assign imasPublicVariable = item["IMAS"] %}
+        {% assign imasPrivateVariable = item["IMAS Private"] %}
 
         <h1>Mutual Aid Resources Available in {{ stateString }}</h1>
         <div class="jump-to-section">
@@ -20,9 +20,10 @@ layout: layouts/base
           <ul class="usa-list">
             <li><a class="usa-link" href="#understand-mutual-aid-section">Step 1: Understanding mutual aid options in {{
                 stateString }}</a></li>
-            <li><a class="usa-link" href="#mutual-aid-contacts-section">Step 2: Mutual aid contacts in {{ stateString
+            <li><a class="usa-link" href="#mutual-aid-contacts-section">Step 2: Public resources in {{ stateString
                 }}</a></li>
-            <li><a class="usa-link" href="#other-mutual-aid-contacts-section">Step 3: Other mutual aid contacts</a></li>
+            <li><a class="usa-link" href="#other-mutual-aid-resources-section">Step 3: Other mutual aid resources</a>
+            </li>
           </ul>
         </div>
         {% include "disclaimer.html" %}
@@ -30,67 +31,42 @@ layout: layouts/base
         <div class="contentRow margin-top-1">
           <div class="grid-row grid-gap">
             <div class="grid-col-12">
-              {% capture emacStandard %}
-              <p><span class="capitalize">{{ stateString }}</span> has <span class="text-bold">Standard EMAC</span>
-                which covers:</p>
-              <ul class="usa-list">
-                <li>sharing of resources and personnel from other EMAC states to perform building department functions
-                  after emergencies and disasters</li>
-                <li>benefits and protections for out-of-state public-sector personnel, but not for volunteer or
-                  private-sector personnel</li>
-                <li>federal reimbursement for assistance provided by other states</li>
-              </ul>
+
+
+              {% capture imasPrivateTextNoImas %}
+              <p>For your state, secondresponders.gov is unaware of any significant policies related to the deployment
+                of private or volunteer entities to carry out building department functions after disasters or
+                emergencies.</p>
               {% endcapture %}
 
-              {% capture emacEhanced %}
-              <p><span class="capitalize">{{ stateString }}</span> has <span class="text-bold">Enhanced EMAC</span>
-                which covers:</p>
-              <ul class="usa-list">
-                <li>sharing of resources and personnel from other EMAC states to perform building department functions
-                  after emergencies and disasters</li>
-                <li>the mobilization and deployment of some volunteer or private sector personnel to carry out building
-                  department functions</li>
-                <li>benefits and protections for out-of-state public-sector personnel, as well as some volunteer and
-                  private sector personnel</li>
-                <li>federal reimbursement for assistance provided by other states and by volunteer or private sector
-                  entities</li>
-              </ul>
-              {% endcapture %}
-
-              {% capture emacNonPartipant %}
-              <p><span class="capitalize">{{ stateString }}</span> does not participate in EMAC and may not be able to
-                request resources and personnel from other states during emergencies and disasters.</p>
-              {% endcapture %}
-
-              {% capture imacIsPrivate %}
+              {% capture imasHasPrivateAid %}
               <li>Your state may also allow jurisdictions to accept services and equipment from <span
-                  class="text-bold">private and
-                  volunteer entities</span> to carry out building department functions after disasters or emergencies.
-                For more information, please review your state's <a
+                  class="text-bold">private and volunteer entities</span> to carry out building department functions
+                after disasters or emergencies. For more information, please review your state’s <a
                   href="{{ '/assets/pdf/fema_mabd-region-8-fact-sheet_2023.pdf' | url }}" target="_blank">mutual aid
                   fact sheet.</a>
               </li>
               {% endcapture %}
 
-              {% assign imacNotPrivateText = 'For your state, secondresponders.gov is <span class="text-bold">unaware of
-                any
-                significant
-                policies</span> related to the deployment of private or volunteer entities to carry out building
-              department functions after disasters or emergencies.' %}
-
-              {% capture imacNotPrivate %}
-              <li>{{ imacNotPrivateText }}</li>
+              {% capture imasNoPrivateAid %}
+              <li>For your state, secondresponders.gov is <span class="text-bold">unaware of any significant
+                  policies</span> related to the deployment of private or volunteer entities to carry out building
+                department functions after disasters or emergencies.
+              </li>
               {% endcapture %}
 
-              {% if imacPrivateVariable == "Yes" %}
-              {% assign imacPrivateText = imacIsPrivate %}
-              {% elsif imacPrivateVariable == "No" %}
-              {% assign imacPrivateText = imacNotPrivate %}
-              {% else %}
-              {% assign imacPrivateText = imacNotPrivate %}
+              {% if imasPrivateVariable contains "No known significant private mutual aid policies." %}
+              {% assign imasPrivateText = imasNoPrivateAid %}
+
+              {% if imasPublicVariable contains "No known significant IMAS" %}
+              {% assign imasPrivateNoImas = imasPrivateTextNoImas %}
               {% endif %}
 
-              {% capture imacPublicOptOut %}
+              {% else %}
+              {% assign imasPrivateText = imasHasPrivateAid %}
+              {% endif %}
+
+              {% capture imasPublicOptOut %}
               <p>Your state/territory has a <span class="text-bold">statewide opt-out IMAC program</span>. This means:
               </p>
               <ul class="usa-list">
@@ -98,40 +74,87 @@ layout: layouts/base
                   agreement by default and must actively choose to opt out of the agreement if they do not wish to
                   participate.</li>
                 <li>Participating jurisdictions, such as cities and counties, can share resources and personnel to
-                  perform building department functions following disasters and emergencies.</li>
-                {{ imacPrivateText }}
+                  perform building department functions following disasters and emergencies.
+                </li>
+                {{ imasPrivateText }}
               </ul>
+              {{ imasPrivateNoImas }}
               {% endcapture %}
 
-              {% capture imacPublicOptIn %}
+              {% capture imasPublicOptIn %}
               <p>Your state/territory has a <span class="text-bold">statewide opt-in IMAC program</span>. This means:
               </p>
               <ul class="usa-list">
                 <li>Local jurisdictions are not automatically enrolled and must actively choose to participate in the
-                  IMAC agreement.</li>
+                  IMAC agreement.
+                </li>
                 <li>Participating jurisdictions, such as cities and counties, can share resources and personnel to
-                  perform building department functions following disasters and emergencies.</li>
-                {{ imacPrivateText }}
+                  perform building department functions following disasters and emergencies.
+                </li>
+                {{ imasPrivateText }}
               </ul>
+              {{ imasPrivateNoImas }}
               {% endcapture %}
 
-              {% capture imacPublicIndividual %}
+              {% capture imasPublicIndividual %}
               <p>Your state/territory does not have a statewide IMAC program and instead utilizes <span
-                  class="text-bold">individual
-                  compacts between local jurisdictions</span>. This means:</p>
+                  class="text-bold">individual compacts between local jurisdictions</span>. This means:</p>
               <ul class="usa-list">
                 <li>Jurisdictions, such as cities and counties, with individual agreements in place can share resources
                   and personnel to perform building department functions following disasters and emergencies.</li>
-                {{ imacPrivateText }}
+                {{ imasPrivateText }}
+              </ul>
+              {{ imasPrivateNoImas }}
+              {% endcapture %}
+
+              {% capture noImas %}
+              <p>Your state/territory has <span class="text-bold">no known significant IMAC program</span> between
+                public entities.
+              </p>
+              {{ imasPrivateNoImas }}
+              {% endcapture %}
+
+              {% if imasPublicVariable == "Statewide opt-out program" %}
+              {% assign imasPublicText = imasPublicOptOut %}
+              {% elsif imasPublicVariable == "Statewide opt-in program" %}
+              {% assign imasPublicText = imasPublicOptIn %}
+              {% elsif imasPublicVariable == "Individual compacts" %}
+              {% assign imasPublicText = imasPublicIndividual %}
+              {% elsif imasPublicVariable == "No known significant IMAS" %}
+              {% assign imasPublicText = noImas %}
+              {% endif %}
+
+
+              {% capture emacStandard %}
+              <p><span class="capitalize">{{ stateString }}</span> has <span class="text-bold">Standard EMAC</span>
+                which covers:</p>
+              <ul class="usa-list">
+                <li>sharing of resources and personnel from other EMAC states to perform building department functions
+                  after emergencies and disasters</li>
+                <li>benefits and protections for out-of-state public-sector personnel, but not for volunteer or
+                  private-sector personnel.</li>
+                <li>federal reimbursement for assistance provided by other states</li>
               </ul>
               {% endcapture %}
 
-              {% capture noImac %}
-              <p>Your state/territory has <span class="text-bold">no known significant IMAC program</span> between
-                public
-                entities.
-              </p>
-              <p>{{ imacNotPrivateText }}</p>
+              {% capture emacEhanced %}
+              <p><span class="capitalize">{{ stateString }}</span> has <span class="text-bold">Enhanced EMAC</span>
+                which allows for:</p>
+              <ul class="usa-list">
+                <li>utilization of public sector resources and personnel from other EMAC states to perform building
+                  department functions after emergencies and disasters</li>
+                <li>the mobilization and deployment of some volunteer or private sector personnel to carry out building
+                  department functions</li>
+                <li>some benefits and protections for out-of-state public-sector personnel, as well as volunteer and
+                  private sector personnel</li>
+                <li>federal reimbursement for out-of-state assistance for eligible expenses related to the mutual aid
+                  response</li>
+              </ul>
+              {% endcapture %}
+
+              {% capture emacNonPartipant %}
+              <p><span class="capitalize">{{ stateString }}</span> does not participate in EMAC and may not be able to
+                request resources and personnel from other states during emergencies and disasters.</p>
               {% endcapture %}
 
               {% capture backToTop %}
@@ -143,28 +166,6 @@ layout: layouts/base
                   </svg></a>
               </div>
               {% endcapture %}
-
-              {% if emacEGC == "Standard EMAC" %}
-              {% assign emacEGCText = emacStandard %}
-              {% elsif emacEGC == "Enhanced EMAC" %}
-              {% assign emacEGCText = emacEhanced %}
-              {% elsif emacEGC == "Not Participtaing in EMAC" %}
-              {% assign emacEGCText = emacNonPartipant %}
-              {% else %}
-              {% assign emacEGCText = emacNonPartipant %}
-              {% endif %}
-
-              {% if imacPublicVariable == "opt-out" %}
-              {% assign imacPublicText = imacPublicOptOut %}
-              {% elsif imacPublicVariable == "opt-in" %}
-              {% assign imacPublicText = imacPublicOptIn %}
-              {% elsif imacPublicVariable == "individual" %}
-              {% assign imacPublicText = imacPublicIndividual %}
-              {% elsif imacPublicVariable == "none" %}
-              {% assign imacPublicText = noImac %}
-              {% else %}
-              {% assign imacPublicText = noImac %}
-              {% endif %}
 
               <section id="understand-mutual-aid-section" class="usa-section understand-mutual-aid">
                 <h2 class="margin-top-0 margin-bottom-3">
@@ -186,17 +187,25 @@ layout: layouts/base
                   </h3>
                   <p>IMAC is an agreement that allows local governments, such as cities and counties, to share resources
                     and personnel during emergencies. IMAC helps local jurisdictions coordinate and support each other
-                    within the state. </p>
+                    within the state.</p>
 
-                  {{ imacPublicText }}
+                  {{ imasPublicText }}
                 </div>
                 <p class="margin-bottom-4">It is also important to learn about options for finding help from outside
                   your state of territory.
                 </p>
+
+                {% if emacEGC == "Standard EMAC" %}
+                {% assign emacEGCText = emacStandard %}
+                {% elsif emacEGC == "Enhanced EMAC" %}
+                {% assign emacEGCText = emacEhanced %}
+                {% endif %}
+
+                {% if emacEGC != "Not Participtaing in EMAC" %}
                 <div id="federal-mutual-aid-section" class="federal-mutual-aid information-section">
                   <h3 class="bg-accent-cool-lighter grid-row">
                     <span class="image-block tablet:grid-col-2 mobile:grid-col-12 display-inline-block">
-                      <img class="text-middle" src="{{ '/assets/img/states/usa.svg'| url }}" role="img" alt=""
+                      <img class="text-middle" src="{{ '/assets/images/states/usa.svg'| url }}" role="img" alt=""
                         aria-hidden="true" width="88" height="88" />
                     </span>
                     <span class="intro-content-block tablet:grid-col-10 mobile:grid-col-12 padding-top-105">
@@ -206,44 +215,43 @@ layout: layouts/base
                   </h3>
                   <p>EMAC is an agreement among U.S. states and territories that allows them to share resources and
                     personnel during disasters or emergencies. It helps states manage large-scale emergencies that
-                    exceed their individual capacities.</p>
+                    exceed
+                    their individual capacities.</p>
 
                   {{ emacEGCText }}
                 </div>
+                {% endif %}
+
                 {{ backToTop }}
               </section>
+
+              {% assign localStateData = csvData.stateEMAs[stateString] %}
+              {% assign stateData = csvData.contactsByState %}
+
               <section id="mutual-aid-contacts-section" class="usa-section mutual-aid-contacts">
                 <h2 class="margin-top-0 margin-bottom-3">
-                  Step 2: Mutual aid contacts in {{ stateString }}
+                  Step 2: Public resources in {{ stateString }}
                 </h2>
                 <p class="margin-bottom-4">The next step to rebuilding following a disaster should be to connect with
-                  emergency management agencies and staff in your state, local, tribal or territorial location. </p>
+                  emergency management agencies and staff in your state, local, tribal or territorial location.</p>
 
                 <div class="contact-information">
                   <h3>
-                    Local and Statewide Emergency Contacts
+                    Local, State and Territorial Emergency Contacts
                   </h3>
-
-                  {% assign localStateData = csvData.stateEMAs[stateString] %}
-                  {% assign stateData = csvData.contactsByState %}
 
                   <div class="grid-row grid-gap-4 display-flex">
                     <div class="grid-col-12">
-                      {% for emas in localStateData %}
-                      {% if emas['Local EMA name'] != blank or emas['Local EMA / EOC page'] != blank %}
-                      <div class="addressBlock bg-gray-10 padding-y-1 padding-x-3 radius-md margin-bottom-3">
-                        {% if emas['Local EMA name'] != blank %}
-                        <p class="nameText text-bold">
-                          {{ emas['Local EMA name'] }}
-                        </p>
-                        {% endif %}
+                      {% for entry in stateData %}
+                      {% for contact in entry.contacts %}
 
-                        {% if emas['Local EMA / EOC page'] != blank %}
-                        <p>
-                          <span class="text-bold">Website:</span>
-                          <a class="usa-link usa-link--external" rel="noreferrer" target="_blank"
-                            href="{{ emas['Local EMA / EOC page'] | url}}">{{ emas['Local EMA / EOC page'] }}
-                          </a>
+                      {% if entry.orgName and entry.orgName != blank %}
+                      {% if entry.state == item.Abbr %}
+
+                      {% if entry.orgName == "Local EMA" and contact['Org_Name'] != blank %}
+                      <div class="addressBlock bg-gray-10 padding-y-1 padding-x-3 radius-md margin-bottom-3">
+                        <p class="nameText text-bold">
+                          {{ contact['Org_Name'] }}
                         </p>
                         <p class="text-bold margin-bottom-0">How they can help: </p>
                         <ul class="margin-top-0">
@@ -251,30 +259,23 @@ layout: layouts/base
                             quickly mobilize personnel and resources from neighboring jurisdictions.
                           </li>
                         </ul>
-                        {% endif %}
+                        <p>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#link' | url }}"></use>
+                          </svg>
+                          <a class="usa-link usa-link--external display-inline-block text-middle" rel="noreferrer"
+                            target="_blank" href="{{ contact['Website'] }}">
+                            View local emergency manager contact list
+                          </a>
+                        </p>
                       </div>
                       {% endif %}
 
-                      {% if emas['Official name of EMA'] != blank or emas['Local EMA page'] != blank %}
+                      {% if entry.orgName == "State EMA" and contact['Org_Name'] != blank %}
                       <div class="addressBlock bg-gray-10 padding-y-1 padding-x-3 radius-md margin-bottom-3">
-                        {% if emas['Official name of EMA'] != blank %}
                         <p class="nameText text-bold">
-                          {{ emas['Official name of EMA'] }}
-                        </p>
-                        {% endif %}
-
-                        {% if emas['Main Phone #'] != blank %}
-                        <p>
-                          <span class="text-bold">Phone:</span> {{ emas['Main Phone #'] }}
-                        </p>
-                        {% endif %}
-
-                        {% if emas['Local EMA page'] != blank %}
-                        <p>
-                          <span class="text-bold">Website:</span>
-                          <a class="usa-link usa-link--external" rel="noreferrer" target="_blank"
-                            href="{{ emas['Local EMA page'] | url }}">{{ emas['Local EMA page'] }}
-                          </a>
+                          {{ contact['Org_Name'] }}
                         </p>
                         <p class="text-bold margin-bottom-0">How they can help: </p>
                         <ul class="margin-top-0">
@@ -284,64 +285,46 @@ layout: layouts/base
                             in compliance with codes and regulations.
                           </li>
                         </ul>
+                        {% if contact['Telephone'] and contact['Telephone'] != blank %}
+                        <p>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#phone' | url }}"></use>
+                          </svg>
+                          <span class="text-bold display-inline-block text-middle">Phone:</span>
+                          <a class="usa-link display-inline-block text-middle" rel="noreferrer" target="_blank"
+                            href="tel:{{ contact['Telephone'] }}">
+                            {{ contact['Telephone'] }}
+                          </a>
+                        </p>
+                        {% endif %}
+                        {% if contact['Website'] and contact['Website'] != blank %}
+                        <p>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#link' | url }}"></use>
+                          </svg>
+                          <a class="usa-link usa-link--external display-inline-block text-middle" rel="noreferrer"
+                            target="_blank" href="{{ contact['Website'] }}">
+                            Visit state/territory emergency management agency webpage
+                          </a>
+                        </p>
                         {% endif %}
                       </div>
                       {% endif %}
-                      {% endfor %}
-
-                      {% for entry in stateData %}
-                      {% for contact in entry.contacts %}
 
                       {% if entry.orgName == "State Hazard Mitigation Officer" %}
-
-                      {% if contact['States Covered'] == stateString %}
                       <div class="addressBlock bg-gray-10 padding-y-1 padding-x-3 radius-md margin-bottom-3">
-                        {% if contact['Full Name'] != blank or contact['Title / Org'] != blank %}
                         <p>
-                          {% if contact['Full Name'] != blank %}
-                          <span class="nameText text-bold">{{ contact['Full Name'] }}</span><br>
+                          <span class="nameText text-bold">{{ entry.orgName }}</span><br />
+                          {% if contact['Individual_Name'] and contact['Individual_Name'] != blank %}
+                          {{ contact['Individual_Name'] }}<br />
                           {% endif %}
 
-                          {% if contact['Full Name'] == blank and contact['Title / Org'] != blank %}
-                          <span class="nameText text-bold">{{ contact['Title / Org'] }}</span>
-                          {% else %}
-                          {{ contact['Title / Org'] }}
+                          {% if contact['Individual_Title'] and contact['Individual_Title'] != blank %}
+                          {{ contact['Individual_Title'] }}
                           {% endif %}
                         </p>
-                        {% endif %}
-
-                        {% if contact['Telephone'] != blank or contact['Cell'] != blank %}
-                        <p>
-                          {% if contact['Telephone'] != blank %}
-                          <span class="text-bold">Office:</span> ###-###-#### <br>
-                          {% endif %}
-
-                          {% if contact['Cell'] != blank %}
-                          <span class="text-bold">Cell:</span> ###-###-####
-                          {% endif %}
-                        </p>
-                        {% endif %}
-
-                        {% if contact['E-mail'] != blank %}
-                        {% assign emails = contact['E-mail'] | split: " " %}
-                        {% assign mainEmail = emails[0] %}
-                        {% assign alternativeEmail = emails[1] %}
-
-                        {% if mainEmail %}
-                        <p>
-                          <span class="text-bold">Email:</span> <a class="usa-link"
-                            href="mailto:{{ contact['E-mail'] }}">{{
-                            mainEmail }}</a>
-                        </p>
-                        {% endif %}
-
-                        {% if alternativeEmail %}
-                        <p>
-                          <span class="text-bold">Alternative Email:</span> <a class="usa-link"
-                            href="mailto:{{ contact['E-mail'] }}">{{ alternativeEmail }}</a>
-                        </p>
-                        {% endif %}
-
                         <p class="text-bold margin-bottom-0">How they can help: </p>
                         <ul class="margin-top-0">
                           <li>A state hazard mitigation officer can help identify funding opportunities, facilitate
@@ -350,11 +333,84 @@ layout: layouts/base
                             readiness.
                           </li>
                         </ul>
-
+                        {% if contact['Email1'] and contact['Email1'] != blank %}
+                        <p>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#mail' | url }}"></use>
+                          </svg>
+                          <span class="text-bold display-inline-block text-middle">Email:</span>
+                          <a class="usa-link display-inline-block text-middle" rel="noreferrer" target="_blank"
+                            href="tel:{{ contact['Telephone'] }}">
+                            {{ contact['Email1'] }}
+                          </a>
+                        </p>
+                        {% endif %}
+                        {% if contact['Email2'] and contact['Email2'] != blank %}
+                        <p>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#mail' | url }}"></use>
+                          </svg>
+                          <span class="text-bold display-inline-block text-middle">Alternative Email:</span>
+                          <a class="usa-link display-inline-block text-middle" rel="noreferrer" target="_blank"
+                            href="tel:{{ contact['Telephone'] }}">
+                            {{ contact['Email2'] }}
+                          </a>
+                        </p>
                         {% endif %}
                       </div>
                       {% endif %}
 
+                      {% if entry.orgName == "State Floodplain Coordinator" %}
+                      <div class="addressBlock bg-gray-10 padding-y-1 padding-x-3 radius-md margin-bottom-3">
+                        <p>
+                          <span class="nameText text-bold">{{ entry.orgName }}</span><br />
+                          {% if contact['Individual_Name'] and contact['Individual_Name'] != blank %}
+                          {{ contact['Individual_Name'] }}<br />
+                          {% endif %}
+
+                          {% if contact['Individual_Title'] and contact['Individual_Title'] != blank %}
+                          {{ contact['Individual_Title'] }}
+                          {% endif %}
+                        </p>
+                        <p class="text-bold margin-bottom-0">How they can help: </p>
+                        <ul class="margin-top-0">
+                          <li>State Floodplain Coordinators are responsible for statewide coordination of floodplain
+                            management and flood prevention activities including the National Flood Insurance Program
+                            (NFIP).
+                          </li>
+                        </ul>
+                        {% if contact['Telephone'] and contact['Telephone'] != blank %}
+                        <p>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#phone' | url }}"></use>
+                          </svg>
+                          <span class="text-bold display-inline-block text-middle">Phone:</span>
+                          <a class="usa-link display-inline-block text-middle" rel="noreferrer" target="_blank"
+                            href="tel:{{ contact['Telephone'] }}">
+                            {{ contact['Telephone'] }}
+                          </a>
+                        </p>
+                        {% endif %}
+                        {% if contact['Email1'] and contact['Email1'] != blank %}
+                        <p>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#mail' | url }}"></use>
+                          </svg>
+                          <span class="text-bold display-inline-block text-middle">Email:</span>
+                          <a class="usa-link display-inline-block text-middle" rel="noreferrer" target="_blank"
+                            href="tel:{{ contact['Telephone'] }}">
+                            {{ contact['Email1'] }}
+                          </a>
+                        </p>
+                        {% endif %}
+                      </div>
+                      {% endif %}
+
+                      {% endif %}
                       {% endif %}
 
                       {% endfor %}
@@ -366,9 +422,9 @@ layout: layouts/base
                 {{ backToTop }}
               </section>
 
-              <section id="other-mutual-aid-contacts-section" class="usa-section mutual-aid-contacts">
+              <section id="other-mutual-aid-resources-section" class="usa-section mutual-aid-contacts">
                 <h2 class="margin-top-0 margin-bottom-3">
-                  Step 3: Other mutual aid contacts
+                  Step 3: Other mutual aid resources
                 </h2>
 
                 <p>You may find that some local agencies are unfamiliar with coordinating mutual aid to support local
@@ -381,12 +437,15 @@ layout: layouts/base
 
 
                 {% for entry in stateData %}
+
+                {% if entry.orgName and entry.orgName != blank %}
                 {% if entry.state == item.Abbr %}
+
+                {% if entry.orgName == "International Code Council Regional Office" %}
                 <div class="contact-information">
                   <h3>
                     {{ entry.orgName }}
                   </h3>
-                  {% if entry.orgName == "International Code Council Regional Office" %}
                   <h4>Assistance provided:</h4>
                   <ul class="usa-list">
                     <li>Permitting and building code assistance</li>
@@ -394,94 +453,47 @@ layout: layouts/base
                   <h4>Group details:</h4>
                   <ul class="usa-list">
                     <li>The International Code Council (ICC) is a nonprofit association that is focused on building
-                      safety
-                      worldwide. The ICC can provide skilled volunteers to assist local building department officials
-                      with
-                      building inspections and code enforcement in the aftermath of a disaster.</li>
+                      safety worldwide. The ICC can provide skilled volunteers to assist local building department
+                      officials with building inspections and code enforcement in the aftermath of a disaster. </li>
                   </ul>
-                  {% endif %}
-
-                  {% if entry.orgName contains "Association of State Flood Plain Managers" %}
-                  <h4>Assistance provided:</h4>
-                  <ul class="usa-list">
-                    <li>Flood response, recovery, and mitigation</li>
-                  </ul>
-                  <h4>Group details:</h4>
-                  <ul class="usa-list">
-                    <li>The Association of State Floodplain Managers (ASFPM) is an organization of professionals
-                      involved
-                      in floodplain management, flood hazard mitigation, National Flood Insurance Program, and flood
-                      preparedness, warning and recovery. The ASFPM can provide communities with expert assistance in
-                      handling floodplain management responsibilities, conducting damage assessments, and offering
-                      guidance on code-compliant reconstruction after a natural disaster.</li>
-                  </ul>
-                  {% endif %}
+                  <p>
+                    <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                      focusable="false" role="img">
+                      <use xlink:href="{{ '/assets/uswds/img/sprite.svg#link' | url }}"></use>
+                    </svg>
+                    <a class="usa-link usa-link--external display-inline-block text-middle" rel="noreferrer"
+                      target="_blank" href="https://www.iccsafe.org/">
+                      Visit the ICC Homepage
+                    </a>
+                  </p>
 
                   <h4>Contact Information</h4>
                   <div class="grid-row grid-gap-4 display-flex">
                     {% for contact in entry.contacts %}
                     <div class="mobile:grid-col-12 tablet:grid-col-6 addressBlock margin-bottom-3">
                       <div class="bg-gray-10 padding-y-1 padding-x-3 height-full radius-md">
-                        {% if contact['Full Name'] != blank or contact['Title / Org'] != blank %}
-                        <p>
-                          {% if contact['Full Name'] != blank %}
-                          <span class="nameText text-bold">{{ contact['Full Name'] }}</span><br>
-                          {% endif %}
+                        {% if contact['Individual_Title'] != blank or contact['Individual_Name'] != blank or
+                        contact['Email1'] != blank %}
 
-                          {% if contact['Full Name'] == blank and contact['Title / Org'] != blank %}
-                          <span class="nameText text-bold">{{ contact['Title / Org'] }}</span>
-                          {% else %}
-                          {{ contact['Title / Org'] }}
-                          {% endif %}
-                        </p>
+                        {% if contact['Individual_Title'] and contact['Individual_Title'] != blank %}
+                        <p class="nameText text-bold">{{ contact['Individual_Title'] }}</p>
                         {% endif %}
 
-                        {% if contact['Address 1'] != blank or contact['Address 2'] != blank or contact['City'] != blank
-                        %}
-                        <p>
-                          {% if contact['Address 1'] != blank %}
-                          {{ contact['Address 1'] }}<br>
-                          {% endif %}
-
-                          {% if contact['Address 2'] != blank %}
-                          {{ contact['Address 2'] }}<br>
-                          {% endif %}
-
-                          {% if contact['City'] != blank %}
-                          {{ contact['City'] }}, {{ contact['State'] }} {{ contact['Zip'] }}
-                          {% endif %}
-                        </p>
+                        {% if contact['Individual_Name'] and contact['Individual_Name'] != blank %}
+                        <p class="margin-top-0">{{ contact['Individual_Name'] }}</p>
                         {% endif %}
 
-                        {% if contact['Telephone'] != blank or contact['Cell'] != blank %}
+                        {% if contact['Email1'] and contact['Email1'] != blank %}
                         <p>
-                          {% if contact['Telephone'] != blank %}
-                          <span class="text-bold">Office:</span> ###-###-#### <br>
-                          {% endif %}
-
-                          {% if contact['Cell'] != blank %}
-                          <span class="text-bold">Cell:</span> ###-###-####
-                          {% endif %}
-                        </p>
-                        {% endif %}
-
-                        {% if contact['E-mail'] != blank %}
-                        {% assign emails = contact['E-mail'] | split: " " %}
-                        {% assign mainEmail = emails[0] %}
-                        {% assign alternativeEmail = emails[1] %}
-
-                        {% if mainEmail %}
-                        <p>
-                          <span class="text-bold">Email:</span> <a class="usa-link"
-                            href="mailto:{{ contact['E-mail'] }}">{{
-                            mainEmail }}</a>
-                        </p>
-                        {% endif %}
-
-                        {% if alternativeEmail %}
-                        <p>
-                          <span class="text-bold">Alternative Email:</span> <a class="usa-link"
-                            href="mailto:{{ contact['E-mail'] }}">{{ alternativeEmail }}</a>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#mail' | url }}"></use>
+                          </svg>
+                          <span class="text-bold display-inline-block text-middle">Email:</span>
+                          <a class="usa-link display-inline-block text-middle" rel="noreferrer" target="_blank"
+                            href="tel:{{ contact['Telephone'] }}">
+                            {{ contact['Email1'] }}
+                          </a>
                         </p>
                         {% endif %}
 
@@ -492,6 +504,75 @@ layout: layouts/base
                   </div>
                 </div>
                 {% endif %}
+
+                {% if entry.orgName == "Association of State Floodplain Managers (ASFPM)" %}
+                <div class="contact-information">
+                  <h3>
+                    {{ entry.orgName }}
+                  </h3>
+                  <h4>Assistance provided:</h4>
+                  <ul class="usa-list">
+                    <li>floodplain management, flood hazard mitigation, National Flood Insurance Program, and flood
+                      preparedness, warning, and recovery</li>
+                  </ul>
+                  <h4>Group details:</h4>
+                  <ul class="usa-list">
+                    <li>The Association of State Floodplain Managers (ASFPM) and nearly 40 state chapters can provide
+                      communities with expert assistance in handling floodplain management responsibilities, conducting
+                      damage assessments, and offering guidance on code-compliant reconstruction after a natural
+                      disaster.</li>
+                  </ul>
+                  <p>
+                    <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                      focusable="false" role="img">
+                      <use xlink:href="{{ '/assets/uswds/img/sprite.svg#link' | url }}"></use>
+                    </svg>
+                    <a class="usa-link usa-link--external display-inline-block text-middle" rel="noreferrer"
+                      target="_blank" href="https://www.floods.org/">
+                      Visit the ASFPM homepage
+                    </a>
+                  </p>
+
+                  <h4>Contact Information</h4>
+                  <div class="grid-row display-flex">
+                    {% for contact in entry.contacts %}
+                    <div class="grid-col-12 addressBlock margin-bottom-3">
+                      <div class="bg-gray-10 padding-y-1 padding-x-3 height-full radius-md">
+                        {% if contact['Org_Name'] and contact['Org_Name'] != blank %}
+                        <p>
+                          <span class="nameText text-bold">{{ contact['Org_Name'] }}</span><br />
+                          State chapter of the Association of State Floodplain Managers (ASFPM)
+                        </p>
+                        {% endif %}
+
+                        <p class="text-bold margin-bottom-0">How they can help: </p>
+                        <ul class="margin-top-0">
+                          <li>State ASFPM chapters are a very good resource after a major event. </li>
+                          <li>In some cases, the state chapters themselves can provide and/or coordinate mutual aid
+                            assistance.</li>
+                        </ul>
+                        {% if contact['Website'] and contact['Website'] != blank %}
+                        <p>
+                          <svg class="usa-icon text-middle margin-left-205 margin-right-05" aria-hidden="true"
+                            focusable="false" role="img">
+                            <use xlink:href="{{ '/assets/uswds/img/sprite.svg#link' | url }}"></use>
+                          </svg>
+                          <a class="usa-link usa-link--external display-inline-block text-middle" rel="noreferrer"
+                            target="_blank" href="{{ contact['Website'] }}">
+                            Learn more about your state ASFPM chapter
+                          </a>
+                        </p>
+                        {% endif %}
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% endif %}
+                {% endif %}
+
                 {% endfor %}
                 {{ backToTop }}
               </section>
