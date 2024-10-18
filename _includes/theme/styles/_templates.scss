@@ -33,6 +33,10 @@ iframe:focus,
   outline-offset: 0.3rem;
 }
 
+.usa-modal[tabindex]:focus {
+  outline: none;
+}
+
 .usa-app {
   box-sizing: border-box;
   min-height: 100%;
