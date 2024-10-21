@@ -640,6 +640,21 @@ iframe:focus,
 
 }
 
+.jump-to-section {
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .usa-list {
+    margin: 0 units(3) units(5) 0;
+
+    li {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .usa-modal {
   max-width: 50rem;
 }
@@ -690,21 +705,6 @@ iframe:focus,
 
     * {
       pointer-events: auto;
-    }
-  }
-}
-
-.jump-to-section {
-
-  p {
-    margin-bottom: 0;
-  }
-
-  .usa-list {
-    margin: 0 units(3) units(5) 0;
-
-    li {
-      margin-bottom: 0;
     }
   }
 }
