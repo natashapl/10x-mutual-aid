@@ -56,3 +56,11 @@
     </button>
   </div>
 </div>
+{% capture modalFixJs %}
+{% include "_includes/theme/js/modalFix.js" %}
+{% endcapture %}
+
+<script>
+    // Modal Fix
+    {{ modalFixJs | jsmin }}
+</script>
