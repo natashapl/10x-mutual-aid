@@ -25,6 +25,18 @@ img {
   text-transform: capitalize;
 }
 
+.custom-small-text {
+  font-size: size('body', 1);
+}
+
+.custom-med-text {
+  font-size: size('body', 7);
+}
+
+.custom-large-text {
+  font-size: size('body', 8);
+}
+
 iframe:focus, 
 [href]:focus, 
 [tabindex]:focus, 
@@ -334,6 +346,11 @@ iframe:focus,
     }
   }
 
+  .usa-link {
+    color: #025197;
+    font-weight: font-weight('semibold');
+  }
+
   .contentRow {
     .grid-container {
       padding-left: units(5);
@@ -425,11 +442,14 @@ iframe:focus,
 
   .information-section {
     padding-bottom: units(2);
+    background: #edeeee;
 
     h3 {
       font-weight: normal;
       margin-top: 0;
-      padding: units(1.5) units(3);
+      padding: units(2) units(4);
+      color: white;
+      border-bottom: units(0.5) solid white;
     }
 
    p {
@@ -447,6 +467,7 @@ iframe:focus,
     img {
       width: 200px;
       height: auto;
+      filter: brightness(0) saturate(100%) invert(99%) sepia(6%) saturate(82%) hue-rotate(102deg) brightness(115%) contrast(100%);
 
       @include at-media(tablet) {
         width: 88px;    
@@ -455,58 +476,139 @@ iframe:focus,
   }
 
   .state-mutual-aid {
-    border: units(1px) solid color('orange-50v');
 
     h3 {
-      border-bottom: units(1px) solid color('orange-50v');
+      background: #005288;
     }
 
-    p strong,
-    p .text-bold {
-      color: color('orange-50v');
-    }
-
-    img {
-      filter: brightness(0) saturate(100%) invert(31%) sepia(98%) saturate(2693%) hue-rotate(23deg) brightness(95%) contrast(102%);
+    .intro-content-block {
+      padding-top: units(3);
     }
   }
 
   .federal-mutual-aid {
-    border: units(1px) solid color('blue-warm-60v');
 
     h3 {
-      border-bottom: units(1px) solid color('blue-warm-60v');
+      background: #314F1A;
     }
 
-    p strong,
-    p .text-bold {
-      color: color('blue-cool-60v');
+    .intro-content-block {
+      padding-top: units(1.5);
     }
   }
 
   .mutual-aid-contacts {
     .contact-information {
-      border: units(2px) solid color('gray-50');
       margin-bottom: units(4);
 
       h3 {
-        background: color('gray-50');
-        color: white;
-        margin-top: 0;
+        background: #d1d1d2;
+        color: color('gray-80');
+        margin: 0;
+        padding: units(2) units(4);
+        font-size: size('body', 10);
+        border-bottom: units(0.5) solid white;
       }
-  
+
       h4 {
-        font-weight: 600;
-        padding: units(1) units(3) 0;
+        font-size: size('body', 8);
+        font-weight: font-weight('semibold');
+        margin: 0 0 units(3);
+
+      }
+
+      .left-column {
+        background: #edeeee;
+
+        @include at-media(tablet) {
+          border-right: units(0.5) solid white;
+        }
+      }
+
+      .right-column {
+        color: white;
+
+        .usa-link {
+          color: white;
+        }
+      }
+
+      .content-column {
+        padding: units(4);
+        border-bottom: units(0.5) solid white;
+      }
+
+      #county-regional-networks {
+        .right-column {
+          background: #3d7ca5;
+        }        
+      }
+
+      #state-emergency-management {
+        .right-column {
+          background: #005288;
+        }        
+      }
+
+      #state-hazard-mitigation-officer {
+        .right-column {
+          background: #003E67;
+        }        
+      }
+
+      #state-floodplain-coord {
+        .right-column {
+          background: #002b47;
+        }        
       }
 
       .usa-list {
-        margin: 0 units(4);
+        margin: 0;
+
+        li {
+          font-size: size('body', 3);
+        }
+      }
+    }
+  }
+
+  .other-contacts {
+    .contact-information {
+      background: #edeeee;
+
+      h3 {
+        background: #5a5b5d;
+        color: white;
       }
 
-      h3,
-      .grid-row {
-        padding: units(1) units(3);
+      h4 {
+        font-size: size('body', 5);
+        font-weight: font-weight('semibold');
+        margin-bottom: units(0.5);
+
+        &.contact-info-header {
+          margin-bottom: units(2);
+        }
+      }
+
+      .contentRow {
+        padding: units(4);
+
+      }
+
+      .addressBlock {
+        margin-bottom: 0;
+
+        .content-column {
+          padding: units(3);
+          background: #cfd1d2;
+          border: none;
+        }
+
+        .nameText {
+          font-size: size('body', 8);
+          font-weight: font-weight('semibold');
+        }
       }
     }
   }
@@ -524,8 +626,11 @@ iframe:focus,
   }
 
   .addressBlock {
+    margin-bottom: units(5);
+
     .nameText {
-      font-size: size('body', 8);;
+      font-size: size('body',10);
+      font-weight: font-weight('semibold');
     }
   }
 }
