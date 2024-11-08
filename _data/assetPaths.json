@@ -37,6 +37,8 @@
   "remove.svg": "/assets/assets/remove-6IAU2W4S.svg",
   "roboto-mono-v5-latin-300.woff2": "/assets/assets/roboto-mono-v5-latin-300-UE3MSWKN.woff2",
   "roboto-mono-v5-latin-300italic.woff2": "/assets/assets/roboto-mono-v5-latin-300italic-L54VLD6K.woff2",
+  "roboto-mono-v5-latin-500.woff2": "/assets/assets/roboto-mono-v5-latin-500-CLPMCIUR.woff2",
+  "roboto-mono-v5-latin-500italic.woff2": "/assets/assets/roboto-mono-v5-latin-500italic-ZDZGHI5C.woff2",
   "roboto-mono-v5-latin-700.woff2": "/assets/assets/roboto-mono-v5-latin-700-3IFUE232.woff2",
   "roboto-mono-v5-latin-700italic.woff2": "/assets/assets/roboto-mono-v5-latin-700italic-DKWOQYBO.woff2",
   "roboto-mono-v5-latin-italic.woff2": "/assets/assets/roboto-mono-v5-latin-italic-MJSZF7UQ.woff2",
@@ -48,12 +50,14 @@
   "sourcesanspro-light-webfont.woff2": "/assets/assets/sourcesanspro-light-webfont-CJSXB3WP.woff2",
   "sourcesanspro-lightitalic-webfont.woff2": "/assets/assets/sourcesanspro-lightitalic-webfont-OXCL2FEP.woff2",
   "sourcesanspro-regular-webfont.woff2": "/assets/assets/sourcesanspro-regular-webfont-TJXUUIWO.woff2",
+  "sourcesanspro-semibold-webfont.woff2": "/assets/assets/sourcesanspro-semibold-webfont-T5RSIH7N.woff2",
+  "sourcesanspro-semibolditalic-webfont.woff2": "/assets/assets/sourcesanspro-semibolditalic-webfont-3K2RXW7D.woff2",
   "unfold_more.svg": "/assets/assets/unfold_more-WL443JWS.svg",
   "warning.svg": "/assets/assets/warning-5OR6W6GJ.svg",
   "admin.js": "/assets/js/admin-TRAB3TNM.js",
   "admin.map": "/assets/js/admin-TRAB3TNM.js.map",
   "app.js": "/assets/js/app-PHNK6WN2.js",
   "app.map": "/assets/js/app-PHNK6WN2.js.map",
-  "index.css": "/assets/styles/index-7HFZBM7B.css",
-  "index.map": "/assets/styles/index-7HFZBM7B.css.map"
+  "index.css": "/assets/styles/index-JXBJFNUE.css",
+  "index.map": "/assets/styles/index-JXBJFNUE.css.map"
 }
