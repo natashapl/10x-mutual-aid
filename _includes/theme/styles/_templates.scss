@@ -81,7 +81,7 @@ iframe:focus,
 
 .usa-navbar,
 .usa-menu-btn  {
-  height: units(7);
+  height: 3.75rem;
 }
 
 .usa-link {
@@ -248,7 +248,7 @@ iframe:focus,
     }
     
     @include at-media(desktop) {
-      width: 51.5%;
+      width: 50.9%;
     }
   } 
 
@@ -262,7 +262,7 @@ iframe:focus,
     }
     
     @include at-media(desktop) {
-      width: 48.5%;
+      width: 49.1%;
     }
   }
 }
@@ -854,11 +854,126 @@ iframe:focus,
 
 }
 
+.jump-to-section {
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .usa-list {
+    margin: 0 units(3) units(5) 0;
+
+    li {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .resources-page {
+  h1,
   h2 {
     font-size: size('body', 12);
   }
-  
+
+  .usa-section {
+    h2 {
+      padding: units(2) units(2) units(2) units(10);
+      color: white;
+      font-size: size('body', 10);
+      line-height: 1.3em;
+
+      @include at-media(tablet-lg) {
+        font-size: size('body', 12);
+        padding: units(3) units(3) units(3) 6.25rem;
+      } 
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding-left: 0.625rem;
+    }
+
+    &.immediate-response {
+      h2 {
+        background: #0078ae url('../images/immediate-response-icon.svg') units(2) center no-repeat;
+        background-size: 3.125rem 3.125rem;
+
+        @include at-media(tablet-lg) {
+          background-position: units(2.5) units(2.5);
+          background-size: 3.75rem 3.75rem;
+        } 
+      }
+      
+      blockquote {
+        border-left: units(2) solid #0078ae;
+
+        @include at-media(tablet-lg) {
+          border-left: units(2.5) solid #0078ae;
+        } 
+      }
+    }
+
+    &.funding-and-reimbursement {
+      h2 {
+        background: #5e9732 url('../images/funding-reimbursement-icon.svg') units(2) center no-repeat;
+        background-size: 3.125rem 3.125rem;
+
+        @include at-media(tablet-lg) {
+          background-position: units(2.5) units(2.5);
+          background-size: 3.75rem 3.75rem;
+        } 
+      }
+
+      blockquote {
+        border-left: units(2) solid #5e9732;
+
+        @include at-media(tablet-lg) {
+          border-left: units(2.5) solid #5e9732;
+        } 
+      }
+    }
+
+    &.disaster-response-planning {
+      h2 {
+        background: #005288 url('../images/disaster-response-plan-icon.svg') units(2) center no-repeat;
+        background-size: 3.125rem 3.125rem;
+
+        @include at-media(tablet-lg) {
+          background-position: units(2.5) units(2.5);
+          background-size: 3.75rem 3.75rem;
+        } 
+      }
+
+      blockquote {
+        border-left: units(2) solid #005288;
+
+        @include at-media(tablet-lg) {
+          border-left: units(2.5) solid #005288;
+        } 
+      }
+    }
+
+    &.professional-organizations {
+      h2 {
+        background: #5a5b5d url('../images/professional-org-icon.svg') units(2) center no-repeat;
+        background-size: 3.125rem 3.125rem;
+
+        @include at-media(tablet-lg) {
+          background-position: units(2.5) units(2.5);
+          background-size: 3.75rem 3.75rem;
+        } 
+      }
+
+      blockquote {
+        border-left: units(2) solid #5a5b5d;
+
+        @include at-media(tablet-lg) {
+          border-left: units(2.5) solid #5a5b5d;
+        } 
+      }
+    }
+  }
+
   h3 {
     font-family: font-family('serif');
     font-size: size('body', 8);
@@ -883,6 +998,63 @@ iframe:focus,
   .usa-button {
     &.to-top {
       font-weight: 400;
+    }
+  }
+
+  .jump-to-section {
+
+    .usa-list {
+      margin: 0 0 units(3);
+      min-width: units('mobile');
+
+      li {
+        width: 48%;
+        height: auto;
+        margin-bottom: units(3);
+
+        @include at-media(tablet-lg) {
+          width: 12.5rem;
+          height: 12.5rem;
+        } 
+      }
+    }
+
+    .usa-link {
+      display: block;
+      padding: units(2);
+      text-align: center;
+      color: white;
+      font-size: size('body', 5);
+      font-weight: 600;
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+
+      @include at-media(tablet-lg) {
+        padding: units(3);
+        font-size: size('body', 7);
+      } 
+
+      &.immediate-response {
+        background: #0078ae;
+      }
+
+      &.funding-and-reimbursement {
+        background: #5e9732;
+      }
+
+      &.disaster-response-planning {
+        background: #005288;
+      }
+
+      &.professional-organizations {
+        background: #5a5b5d;
+      }
+
+      span {
+        display: block;
+        line-height: 1.1em;
+      }
     }
   }
 }
@@ -928,21 +1100,6 @@ iframe:focus,
     margin-top: units(2);
   }
 
-}
-
-.jump-to-section {
-
-  p {
-    margin-bottom: 0;
-  }
-
-  .usa-list {
-    margin: 0 units(3) units(5) 0;
-
-    li {
-      margin-bottom: 0;
-    }
-  }
 }
 
 /* Keep these styles at the bottom */
