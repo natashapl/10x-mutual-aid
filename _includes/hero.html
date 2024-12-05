@@ -1,43 +1,47 @@
 <section class="usa-hero" id="mutual-aid-search" aria-label="Introduction">
-  <picture>
-    <source media="(min-width: 40em)" srcset="{{ assetPaths['hero.webp'] }}"/>
-    <img src="{{ assetPaths['hero.webp'] }}" alt="" width="0" height="0"
-      style="display: none !important;" fetchpriority="high"/>
-  </picture>
   <div class="grid-container">
-    <div class="usa-hero__callout">
-      <h1 class="usa-hero__heading margin-bottom-4">
-        Find mutual aid resources to help your local building department
-      </h1>
-      <div class="grid-container">
-        <form class="usa-form" id="stateForm">
-          <fieldset class="usa-fieldset">
-            <legend class="usa-legend margin-bottom-1">
-              Enter your location to discover mutual aid resources available in your area to assist post-disaster
-              rebuilding.
-            </legend>
-
-            <label class="usa-label" for="state">
-              State or Territory
-            </label>
-            <div class="grid-row grid-gap-2">
-              <span class="tablet:grid-col-8 mobile:grid-col-12 margin-bottom-2">
-                <select class="usa-select" id="state" name="state" required>
+    <div class="grid-row">
+      <div class="grid-col-5 hero-text-form">
+        <div class="usa-hero__callout">
+          <h1 class="usa-hero__heading margin-bottom-4">
+            Does your community need help rebuilding?
+          </h1>
+          <p>Mutual aid resources are available to assist with post-disaster recovery needs like:</p>
+          <ul class="usa-list">
+            <li>Performing detailed building inspections and damage assessments.</li>
+            <li>Issuing emergency permits for temporary repairs and shelters.</li>
+            <li>Enforcing updated building codes and hazard mitigation measures.</li>
+          </ul>
+          <form class="usa-form" id="stateForm">
+            <fieldset class="usa-fieldset">
+              <legend class="usa-legend margin-bottom-1">
+                Find mutual aid resources
+              </legend>
+              <label class="usa-label" for="state">
+                State or Territory
+              </label>
+              <div class="grid-row grid-gap-2">
+                <select class="usa-select grid-col-12 margin-bottom-2" id="state" name="state" required>
                   <option value>- Select -</option>
                   {% for item in csvData.stantecMABD %}
                   <option value="{{ item.Abbr | slug }}">{{ item.Abbr }} - {{ item.State }}</option>
                   {% endfor %}
                 </select>
-              </span>
-              <span class="tablet:grid-col-4 mobile:grid-col-12 desktop:text-right">
-                <input class="usa-button" type="submit" value="View aid options" />
-              </span>
-            </div>
-
-          </fieldset>
-        </form>
+                <input class="usa-button grid-col-12" type="submit" value="View resources" />
+              </div>
+            </fieldset>
+          </form>   
+        </div>   
+      </div>
+      <div class="grid-col-7 hero-image">
+        <picture>
+          <source media="(min-width: 40em)" srcset="{{ '/assets/images/hero-2.webp' | url }}"/>
+          <img src="{{ '/assets/images/hero-2.webp' | url }}" alt="" width="0" height="0"
+            style="display: none !important;" fetchpriority="high"/>
+        </picture>     
       </div>
     </div>
+
   </div>
 </section>
 
