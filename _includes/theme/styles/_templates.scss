@@ -524,6 +524,14 @@ iframe:focus,
     .usa-alert__text {
       margin-top: units(2);
       margin-bottom: units(2);
+
+      .grid-col-10 {
+        width: 100%;
+      }
+
+      @include at-media(desktop) {
+        width: 83.3333333333%;
+      }
     }
   }
 
