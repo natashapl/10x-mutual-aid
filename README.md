@@ -14,6 +14,7 @@ Requires Node.js and npm to run. Node v20.11.0 is confirmed to work, and probabl
 
 ## Deploying the prototype
 
-The software is deployed to Cloud.gov Pages (previously known as Federalist) automatically upon commiting code to, or merging a branch into, the `main` Git branch. Deployment takes a couple of minutes, after which the most recent deployment will live at this URL:
+The original repository is deployed to Cloud.gov Pages (previously known as Federalist). This repository is a fork of the original and has been deployed to:
 
-[https://federalist-fc42b3e8-1d7d-4650-b068-c0c57c55dcfd.sites.pages.cloud.gov/site/gsa-tts/10x-mutual-aid/](https://federalist-fc42b3e8-1d7d-4650-b068-c0c57c55dcfd.sites.pages.cloud.gov/site/gsa-tts/10x-mutual-aid/)
+[https://10x-mutual-aid-natashasworld.vercel.app/](https://10x-mutual-aid-natashasworld.vercel.app/)
+
